@@ -1,0 +1,22 @@
+// customize some Bootstrap variables
+$primary: #05668D;
+$primary-light: #028090;
+$Secondary : #00A896;
+$Secondary-light : #02C39A;
+$Intermediate : #F0F3BD;
+
+$theme-colors: (
+    "primary": $primary,
+    "Secondary": $Secondary,
+    "primary-light": $primary-light,
+    "Secondary-light": $Secondary-light,
+    "Intermediate": $Intermediate
+);
+
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: lightgray;
+}
