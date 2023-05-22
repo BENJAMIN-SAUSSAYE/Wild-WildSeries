@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block title %}
 	{{ parent() }}
-	| Program-index
+	| Catégorie #{{ category.id }}
 {% endblock %}
+
 {% block body %}
 	<div class="container-fluid">
-		<h1>Toutes les séries</h1>
+		<h1>Les séries de la catégorie
+			{{ category.getName() }}</h1>
 		<div class="row">
 			{% for program in programs %}
 				<div class="col-4 d-flex mb-4">
@@ -15,10 +17,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">{{ loop.index ~ ' - ' ~ program.getTitle() }}</h5>
-
-							<a class="badge rounded-pill bg-primary px-2" href="{{ path("category_show", { categoryName: program.getCategory.getName() }) }}">{{ program.getCategory.getName() }}</a>
-
-							{# <span class="badge rounded-pill bg-primary px-2">{{ program.getCategory.getName() }}</span> #}
+							<span class="badge rounded-pill bg-primary px-2">{{ program.getCategory.getName() }}</span>
 							<p class="card-text">{{ program.getSynopsis() }}</p>
 
 						</div>

@@ -1,8 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-	{{ parent() }} | Program-Show
+	{{ parent() }}
+	| Série #{{ program.id }}
 {% endblock %}
 
 {% block body %}
-	<h1>{{ id }}</h1>
+	<div class="container-fluid">
+		<div class="media">
+			<img class="align-self-start mr-3" src="{{ program.getPoster() }}" alt="{{ program.getTitle() }} poster">
+			<div class="media-body">
+				<h1 class="mt-0">{{ program.getTitle() }}</h1>
+				<p>{{ program.getSynopsis() }}</p>
+				<p>Catégorie :
+					{{ program.category.getName() }}</p>
+			</div>
+		</div>
+		<a href="{{ path('program_index') }}">
+			Retour à la liste des programmes
+		</a>
+	</div>
 {% endblock %}

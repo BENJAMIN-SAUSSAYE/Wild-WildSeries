@@ -4,6 +4,11 @@
 	| Home
 {% endblock %}
 {% block body %}
-	<h1>Bienvenue !</h1>
-	<img src="{{ asset('build/images/logo.png') }}" alt="ACME logo">
+	<section id="hero" class="m-0 p-0">
+		<div class="hero-container">
+			<h1 class="fs-1 fw-bolder bg-body rounded text-dark p-3 text-wrap text-uppercase">
+				Bienvenue sur WILD SERIES !
+			</h1>
+		</div>
+	</section>
 {% endblock %}

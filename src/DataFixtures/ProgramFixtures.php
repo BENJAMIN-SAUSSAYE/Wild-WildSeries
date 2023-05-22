@@ -29,6 +29,21 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             'category' => 'category_Horreur'
         ],
         [
+            'title' => 'De l\'autre côté',
+            'synopsis' => 'Une série d\'histoires de découverte de soi dans le monde du mystique et du paranormal. Nous explorons les mondes des sorcières, des extraterrestres, des fantômes et des dimensions alternatives.',
+            'category' => 'category_Horreur'
+        ],
+        [
+            'title' => 'Slasher',
+            'synopsis' => 'D\'ignobles tueurs en série sèment l\'effroi tandis que leurs prochaines victimes luttent pour leur survie dans cette terrifiante série d\'anthologie.',
+            'category' => 'category_Horreur'
+        ],
+        [
+            'title' => 'Red Rose',
+            'synopsis' => 'Pendant les vacances d\'été, un groupe d\'étudiants britanniques téléchargent l\'application sinistre "Red Rose", qui les oblige à relever des défis de plus en plus dangereux et aux conséquences mortelles.',
+            'category' => 'category_Horreur'
+        ],
+        [
             'title' => 'Grimm',
             'synopsis' => 'A Portland, un détective doit protéger toute âme vivante des sinistres personnages des contes des frères Grimm qui ont infiltré le monde réel.',
             'category' => 'category_Fantastique'

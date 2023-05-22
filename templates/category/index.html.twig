@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| catégories-index
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1>Toutes les catégories</h1>
+		<div class="d-flex flex-column">
+			{% for category in categories %}
+				<div class="p-2">
+					<a class="px-2" href="{{ path("category_show", { categoryName: category.getName() }) }}">{{ category.getName() }}</a>
+				</div>
+			{% else %}
+				Aucune catégorie trouvée.
+			{% endfor %}
+		</div>
+		<div class="row justify-content-end fixed-bottom">
+			<div class="col-1 p-2 m-2">
+				<a href="{{ path('app_index') }}">
+					Retour à l'accueil
+				</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

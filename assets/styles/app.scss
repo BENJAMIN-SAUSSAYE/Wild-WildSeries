@@ -1,22 +1,32 @@
 // customize some Bootstrap variables
-$primary: #05668D;
+$primary: #05668d;
 $primary-light: #028090;
-$Secondary : #00A896;
-$Secondary-light : #02C39A;
-$Intermediate : #F0F3BD;
-
-$theme-colors: (
-    "primary": $primary,
-    "Secondary": $Secondary,
-    "primary-light": $primary-light,
-    "Secondary-light": $Secondary-light,
-    "Intermediate": $Intermediate
-);
-
+$Secondary: #00a896;
+$Secondary-light: #02c39a;
+$Intermediate: #f0f3bd;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
-body {
-    background-color: lightgray;
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url(../images/Series-TV-phenomene-societe-1000x500.jpg) top center;
+  background-attachment: scroll;
+  background-size: auto;
+  background-size: cover;
+  position: relative;
+}
+
+#hero .hero-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
