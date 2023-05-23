@@ -28,7 +28,9 @@ class CategoryController extends AbstractController
                 'Aucune catégorie nommée : ' . $categoryName . ' n\'à été trouvée dans la table [category].'
             );
         }
-        $programs = $entityManager->getRepository(Program::class)->findBy(['category' => $category->getId()], ['id' => 'ASC'], 3);
+
+        //$programs = $entityManager->getRepository(Program::class)->findBy(['category' => $category], ['id' => 'ASC'], 3);
+        $programs = $category->getPrograms();
         return $this->render('category/show.html.twig', ['programs' => $programs, 'category' => $category]);
     }
 }
