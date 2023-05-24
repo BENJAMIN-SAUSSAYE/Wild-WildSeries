@@ -9,8 +9,8 @@
 	<div class="container-fluid">
 		<div class="d-flex flex-column justify-content-center mx-sm-2 m-auto my-sm-2">
 			<div class="row mt-5 gx-0">
-				<div class="col-xl-4 border-end">
-					<img class="card-img-top w-100 d-inline-block" src="{{ asset('build/images/programs/' ~ program.poster) }}" alt="{{ 'poster ' ~ program.title }}">
+				<div class="col-xl-4 border-end" style="height:100%">
+					<img class="card-img-top img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="{{ program.poster }}" alt="{{ 'poster ' ~ program.title }}">
 				</div>
 				<div class="col-xl-8 text-white bg-primary-light">
 					<div class="p-4">

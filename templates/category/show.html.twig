@@ -14,7 +14,7 @@
 			{% for program in programs %}
 				<div class="col-md-4 d-flex p-2">
 					<div class="card">
-						<img class="card-img-top object-fit-cover" src="{{ asset('build/images/programs/' ~ program.poster) }}" alt="{{ 'poster ' ~ program.title }}">
+						<img class="card-img-top object-fit-cover" src="{{ program.poster }}" alt="{{ 'poster ' ~ program.title }}">
 						<div class="card-header text-white bg-dark py-4 d-flex align-items-center justify-content-between">
 							Série
 							<a class="px-3 py-2 text-decoration-none" href="{{ path("category_show", { categoryName: program.category.name }) }}">{{ program.category.name }}</a>
