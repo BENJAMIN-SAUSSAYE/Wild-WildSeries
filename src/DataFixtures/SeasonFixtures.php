@@ -10,18 +10,23 @@ use Faker\Factory;
 
 class SeasonFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const SEASON_COUNT = 5;
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i < 50; $i++) {
-            $season = new Season();
-            $season->setNumber($faker->numberBetween(1, 10));
-            $season->setYear($faker->numberBetween(2010, 2023));
-            $season->setDescription($faker->realTextBetween($minNbChars = 80, $maxNbChars = 300, $indexSize = 2));
-            $season->setProgram($this->getReference('program_' . $faker->numberBetween(0, 24)));
-            $manager->persist($season);
-            $this->addReference('season_' . $i, $season);
+        for ($i = 0; $i < ProgramFixtures::PROGRAM_COUNT; $i++) {
+            $program = $this->getReference('program_' . $i);
+            for ($s = 0; $s < self::SEASON_COUNT; $s++) {
+                $season = new Season();
+                $season->setNumber($s + 1);
+                $season->setYear($faker->numberBetween(2010, 2023));
+                $season->setDescription($faker->realTextBetween($minNbChars = 80, $maxNbChars = 300, $indexSize = 2));
+                $season->setProgram($program);
+                $manager->persist($season);
+                $this->addReference('season_' . strval($i) . strval($s), $season);
+            }
         }
         $manager->flush();
     }

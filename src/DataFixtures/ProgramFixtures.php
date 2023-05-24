@@ -10,7 +10,8 @@ use Faker\Factory;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
-    private const IMG_PLACEHOLDER = 'https://placehold.co/400?text=';
+    // private const IMG_PLACEHOLDER = 'https://placehold.co/400?text=';
+    public const PROGRAM_COUNT = 25;
 
     /**
      * Summary of load
@@ -21,15 +22,15 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < self::PROGRAM_COUNT; $i++) {
             $program = new Program();
             $program->setTitle($faker->sentence(3, true));
-            $program->setSynopsis($faker->paragraphs(2, true));
+            $program->setSynopsis($faker->paragraphs(3, true));
             $program->setCategory($this->getReference('category_' .  $faker->numberBetween(0, count(CategoryFixtures::CATEGORIES) - 1)));
             //$program->setPoster($faker->imageUrl(200, 200, 'serie', true));
             $program->setPoster('https://picsum.photos/id/' .  $faker->numberBetween(1, 100) . '/150/200');
             $manager->persist($program);
-            $this->addReference('program_' . $i, $program);
+            $this->addReference('program_' . strval($i), $program);
         }
         $manager->flush();
     }
