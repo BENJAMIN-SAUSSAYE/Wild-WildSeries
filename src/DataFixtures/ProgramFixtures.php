@@ -9,7 +9,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
-    const PROGRAMS = [
+    const IMG_PLACEHOLDER = 'https://placehold.co/250x330';
+    public const PROGRAMS = [
         [
             'title' => 'Walking dead',
             'synopsis' => 'Après une apocalypse ayant transformé la quasi-totalité de la population en zombies, un groupe d\'hommes et de femmes ' .

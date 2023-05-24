@@ -22,13 +22,19 @@
 								<p class="p-1 fs-4">{{ season.description }}</p>
 								<p class="p-1 fs-4 text-dark fw-bold">{{ 'Année : ' ~ season.year }}</p>
 								<p class="p-1 fs-4 text-white fw-light">{{ 'Nombre dépisode(s) : ' ~ season.episodes|length }}</p>
-								<class="p-2">
+								<div class="container p-2" id="mySeasonGroup">
 									{% for episode in season.episodes %}
-										<a class="badge rounded-pill bg-dark px-4 py-2 m-3 text-decoration-none">{{ 'Épisode ' ~ episode.number }}</a>
+										<a data-bs-toggle="collapse" href="#collapseEpisode{{ episode.number }}" role="button" aria-expanded="false" aria-controls="collapseEpisode{{ episode.number }}" class="badge rounded-pill bg-dark px-4 py-2 m-3 text-decoration-none">{{ 'Épisode ' ~ episode.number }}</a>
+										<div class="collapse fixed-bottom" id="collapseEpisode{{ episode.number }}" data-bs-parent="#mySeasonGroup">
+											<div class="card card-body bg-secondary-light text-dark p-2 ">
+												<h6>{{ episode.title }}</h6>
+												<p class="p-2">{{ episode.synopsis }}</p>
+											</div>
+										</div>
 									{% else %}
 										Aucun épisode trouvé.
 									{% endfor %}
-								</p>
+								</div>
 							</p>
 						</div>
 					</div>
