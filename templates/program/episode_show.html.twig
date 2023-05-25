@@ -8,16 +8,17 @@
 {% block body %}
 	<div class="container-fluid">
 		<div class="d-flex flex-column justify-content-center mx-sm-2 m-auto my-sm-2">
-
 			<div class="row mt-5 px-sm-5 gx-0">
 				<div class="col-xl-4 d-flex flex-column justify-content-center align-items-center border-end bg-dark text-white p-2">
-					<h4 class="fw-bold fs-3 p-2">{{ program.title }}</h4>
-					<h5 class="fw-light fs-3 p-2">{{ 'Saison n° ' ~ season.number }}</h5>
+					<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="https://fakeimg.pl/650x450/?text={{ 'Saison n° ' ~ season.number }}&font_size=62&font=lobster" alt="{{ 'Saison ' ~ season.number }}">
 				</div>
 				<div class="col-xl-8 text-white bg-primary-light">
+					<div class="p-4 d-flex justify-content-between">
+						<h1 class="fs-2 p-2">{{ program.title }}</h1>
+						<h2 class="fs-3 p-2 text-dark">{{ 'Épisode n° ' ~ episode.number }}</h2>
+					</div>
 					<div class="p-4">
-						<p class="p-2 fs-4">{{ 'Épisode n° ' ~ episode.number }}</p>
-						<h6 class="p-2 text-dark fw-bold">{{ episode.title }}</h6>
+						<h3 class="p-2 text-dark fw-bold">{{ episode.title }}</h3>
 						<p class="p-2">{{ episode.synopsis }}</p>
 					</div>
 				</div>

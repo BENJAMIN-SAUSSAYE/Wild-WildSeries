@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| Série-New
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid m-md-4 p-md-4">
+		<h1 class="mb-3 p-2">Ajouter Une Série</h1>
+		{% form_theme form 'bootstrap_5_layout.html.twig' %}
+		<div class="row d-flex flex-column p-md-1 m-md-1">
+			<div class="col-xl-6 col-lg-8 col-md-12 p-2">
+				{{ form_start(form) }}
+				<div class="row mb-md-3">
+					<div class="col py-2">
+						{{ form_errors(form) }}
+					</div>
+				</div>
+				<div class="row mb-md-3 py-2">
+					<div class="col py-2">
+						{{ form_widget(form) }}
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-12">
+						<button type="submit" class="btn btn-primary px-4">Ajouter</button>
+					</div>
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
+
+		<div class="row d-flex fixed-bottom mb-3">
+			<div class="col p-2 d-flex align-items-center justify-content-end">
+				<a class="text-dark fw-bold px-4 fs-3" href="{{ path('program_index') }}">
+					Retour
+				</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
