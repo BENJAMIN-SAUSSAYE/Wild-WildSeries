@@ -2,28 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\Program;
+use App\Entity\Season;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProgramType extends AbstractType
+class SeasonType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
-                'title',
-                TextType::class,
+                'number',
+                null,
                 [
-                    'label' => 'Titre',
+                    'label' => 'Numéro De Saison',
                     'attr' => [
-                        'placeholder' => 'Titre de la série..',
+                        'placeholder' => 'Numéro de la saison...',
                     ],
                     'row_attr' => [
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
@@ -31,12 +29,25 @@ class ProgramType extends AbstractType
                 ]
             )
             ->add(
-                'synopsis',
+                'year',
+                null,
+                [
+                    'label' => 'Année',
+                    'attr' => [
+                        'placeholder' => 'Date de la saison...',
+                    ],
+                    'row_attr' => [
+                        'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
+                    ],
+                ]
+            )
+            ->add(
+                'description',
                 TextareaType::class,
                 [
-                    'label' => 'Synopsys',
+                    'label' => 'Description',
                     'attr' => [
-                        'placeholder' => 'Synopsis de la série..',
+                        'placeholder' => 'Synopsis de la saison...',
                     ],
                     'row_attr' => [
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
@@ -44,29 +55,15 @@ class ProgramType extends AbstractType
                 ]
             )
             ->add(
-                'poster',
-                UrlType::class,
-                [
-                    'label' => 'Image URL',
-                    'data' => 'https://fakeimg.pl/250x300/?text=SERIE TV&font_size=62&font=bebas',
-                    'attr' => [
-                        'placeholder' => 'Url d\'une image...',
-                    ],
-                    'row_attr' => [
-                        'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
-                    ],
-                ]
-            )
-            ->add(
-                'category',
+                'program',
                 EntityType::class,
                 [
-                    'label' => 'Catégorie',
-                    'class' => Category::class,
+                    'label' => 'Série',
+                    'class' => Program::class,
                     'attr' => [
                         'placeholder' => 'select...',
                     ],
-                    'choice_label' => 'name',
+                    'choice_label' => 'title',
 
                     // used to render a select box, check boxes or radios
                     // 'multiple' => true,
@@ -81,7 +78,7 @@ class ProgramType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Program::class,
+            'data_class' => Season::class,
         ]);
     }
 }
