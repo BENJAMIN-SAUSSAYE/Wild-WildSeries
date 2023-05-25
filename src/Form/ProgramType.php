@@ -48,6 +48,7 @@ class ProgramType extends AbstractType
                 UrlType::class,
                 [
                     'label' => 'IMAGE',
+                    'data' => 'https://fakeimg.pl/250x300/?text=SERIE TV&font_size=62&font=bebas',
                     'attr' => [
                         'placeholder' => 'Url d\'une image...',
                     ],
@@ -66,6 +67,7 @@ class ProgramType extends AbstractType
                         'placeholder' => 'select...',
                     ],
                     'choice_label' => 'name',
+
                     // used to render a select box, check boxes or radios
                     // 'multiple' => true,
                     // 'expanded' => true,
