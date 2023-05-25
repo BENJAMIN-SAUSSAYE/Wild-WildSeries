@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\EpisodeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: EpisodeRepository::class)]
+#[Assert\EnableAutoMapping]
 class Episode
 {
     #[ORM\Id]
@@ -19,12 +22,17 @@ class Episode
     private ?Season $season = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
+
     private ?string $title = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $number = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\EnableAutoMapping]
     private ?string $synopsis = null;
 
     public function getId(): ?int
