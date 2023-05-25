@@ -7,8 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SeasonRepository::class)]
+#[Assert\EnableAutoMapping]
 class Season
 {
     #[ORM\Id]
@@ -21,9 +23,11 @@ class Season
     private ?Program $program = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $number = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $year = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
