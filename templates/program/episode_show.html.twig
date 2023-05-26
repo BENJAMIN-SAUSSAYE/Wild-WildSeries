@@ -13,7 +13,7 @@
 					<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="https://fakeimg.pl/650x450/?text={{ 'Saison n° ' ~ season.number }}&font_size=62&font=lobster" alt="{{ 'Saison ' ~ season.number }}">
 				</div>
 				<div class="col-xl-8 text-white bg-primary-light">
-					<div class="p-4 d-flex justify-content-between">
+					<div class="p-4 d-flex flex-column justify-content-start">
 						<h1 class="fs-2 p-2">{{ program.title }}</h1>
 						<h2 class="fs-3 p-2 text-dark">{{ 'Épisode n° ' ~ episode.number }}</h2>
 					</div>
@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="row px-sm-5 gx-0">
-				<div class="col-sm-4 border-end">
+				<div class="col-sm-6 col-xl-4 border-end">
 					<div class="d-flex justify-content-between text-white bg-dark p-4 border-top">
 						Série
 						<div>
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-8">
+				<div class="col-sm-6 col-xl-8">
 					<div class="d-flex justify-content-end bg-primary p-4 border-top">
 						<a class="bottom text-white fw-bold" href="{{ path('program_index') }}">Retour</a>
 					</div>

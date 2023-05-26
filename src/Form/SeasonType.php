@@ -6,6 +6,7 @@ use App\Entity\Program;
 use App\Entity\Season;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,12 +18,13 @@ class SeasonType extends AbstractType
         $builder
             ->add(
                 'number',
-                null,
+                ChoiceType::class,
                 [
                     'label' => 'Numéro De Saison',
-                    'attr' => [
-                        'placeholder' => 'Numéro de la saison...',
-                    ],
+                    'choices' => range(1, 30),
+                    'choice_label' => function ($value) {
+                        return 'Saison n° ' . $value;
+                    },
                     'row_attr' => [
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
                     ],
@@ -30,12 +32,13 @@ class SeasonType extends AbstractType
             )
             ->add(
                 'year',
-                null,
+                ChoiceType::class,
                 [
-                    'label' => 'Année',
-                    'attr' => [
-                        'placeholder' => 'Date de la saison...',
-                    ],
+                    'label' => 'Année De Sortie',
+                    'choices' => range(Date('Y'), 1950),
+                    'choice_label' => function ($value) {
+                        return $value;
+                    },
                     'row_attr' => [
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
                     ],
@@ -48,9 +51,10 @@ class SeasonType extends AbstractType
                     'label' => 'Description',
                     'attr' => [
                         'placeholder' => 'Synopsis de la saison...',
+                        'style' => 'height:20vh'
                     ],
                     'row_attr' => [
-                        'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
+                        'class' => 'h-20 form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
                     ],
                 ]
             )
@@ -61,7 +65,7 @@ class SeasonType extends AbstractType
                     'label' => 'Série',
                     'class' => Program::class,
                     'attr' => [
-                        'placeholder' => 'select...',
+                        'class' => 'form-select-lg mb-3',
                     ],
                     'choice_label' => 'title',
 

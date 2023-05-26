@@ -37,6 +37,7 @@ class ProgramType extends AbstractType
                     'label' => 'Synopsys',
                     'attr' => [
                         'placeholder' => 'Synopsis de la série..',
+                        'style' => 'height:20vh'
                     ],
                     'row_attr' => [
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
@@ -64,7 +65,7 @@ class ProgramType extends AbstractType
                     'label' => 'Catégorie',
                     'class' => Category::class,
                     'attr' => [
-                        'placeholder' => 'select...',
+                        'class' => 'form-select-lg mb-3',
                     ],
                     'choice_label' => 'name',
 

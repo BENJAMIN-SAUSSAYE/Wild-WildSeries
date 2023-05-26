@@ -1,22 +1,35 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
-<div class="row d-flex flex-column p-md-1 m-md-1">
-	<div class="col-xl-6 col-lg-8 col-md-12 p-2">
-		{{ form_start(form) }}
-		<div class="row mb-md-3">
-			<div class="col py-2">
-				{{ form_errors(form) }}
-			</div>
+{{ form_start(form) }}
+<div class="d-flex flex-column justify-content-center m-4 p-4">
+	<div class="row mb-3">
+		<div class="col">
+			{{ form_errors(form) }}
 		</div>
-		<div class="row mb-md-3 py-2">
-			<div class="col py-2">
-				{{ form_widget(form) }}
-			</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			{{ form_row(form.number) }}
 		</div>
-		<div class="row mb-md-3 py-2">
-			<div class="col-12">
-				<button class="btn btn-primary px-4">{{ button_label|default('Sauvegarder') }}</button>
-			</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			{{ form_row(form.year) }}
 		</div>
-		{{ form_end(form) }}
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			{{ form_row(form.description) }}
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			{{ form_row(form.program) }}
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			<button class="btn btn-primary px-4">{{ button_label|default('Sauvegarder') }}</button>
+		</div>
 	</div>
 </div>
+{{ form_end(form) }}

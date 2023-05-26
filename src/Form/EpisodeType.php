@@ -6,6 +6,7 @@ use App\Entity\Episode;
 use App\Entity\Season;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,12 +19,13 @@ class EpisodeType extends AbstractType
             ->add('title')
             ->add(
                 'number',
-                null,
+                ChoiceType::class,
                 [
                     'label' => 'Numéro D\'Épisode',
-                    'attr' => [
-                        'placeholder' => 'Numéro de l\'épisode...',
-                    ],
+                    'choices' => range(1, 30),
+                    'choice_label' => function ($value) {
+                        return 'Épisode n° ' . $value;
+                    },
                     'row_attr' => [
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
                     ],
@@ -36,6 +38,7 @@ class EpisodeType extends AbstractType
                     'label' => 'Synopsys',
                     'attr' => [
                         'placeholder' => 'Synopsis de l\'épisode...',
+                        'style' => 'height:20vh'
                     ],
                     'row_attr' => [
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
@@ -46,10 +49,10 @@ class EpisodeType extends AbstractType
                 'season',
                 EntityType::class,
                 [
-                    'label' => 'Série',
+                    'label' => 'Saison',
                     'class' => Season::class,
                     'attr' => [
-                        'placeholder' => 'select...',
+                        'class' => 'form-select-lg mb-3',
                     ],
                     'choice_label' => 'number',
 

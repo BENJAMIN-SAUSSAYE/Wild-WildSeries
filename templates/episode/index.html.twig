@@ -4,38 +4,46 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid p-md-4">
+	<div class="container p-md-4">
 		<h1 class="mb-3 p-2">Liste Des Épisodes</h1>
-		<table class="table table-sm table-striped">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Title</th>
-					<th>Number</th>
-					<th>Synopsis</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for episode in episodes %}
-					<tr>
-						<td>{{ episode.id }}</td>
-						<td>{{ episode.title }}</td>
-						<td>{{ episode.number }}</td>
-						<td>{{ episode.synopsis }}</td>
-						<td>
-							<a href="{{ path('app_episode_show', {'id': episode.id}) }}">show</a>
-							<a href="{{ path('app_episode_edit', {'id': episode.id}) }}">edit</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="5">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-
-		<a href="{{ path('app_episode_new') }}">Ajouter Épisode</a>
+		<hr>
+		<div class="d-flex flex-column justify-content-center">
+			<div class="row mb-3">
+				<table class="table table-sm table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col" class="w-5">ID</th>
+							<th scope="col" class="w-15">TITRE</th>
+							<th scope="col" class="w-5">NUMBER</th>
+							<th scope="col" class="w-50">SYNOPSYS</th>
+							<th scope="col" class="w-25"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for episode in episodes %}
+							<tr>
+								<td scope="row">{{ episode.id }}</td>
+								<td>{{ episode.title }}</td>
+								<td>{{ episode.number }}</td>
+								<td>{{ episode.synopsis|slice(0, 80) ~ '...' }}</td>
+								<td>
+									<a role="button" class="btn btn-dark btn-block m-2 px-4" href="{{ path('app_episode_show', {'id': episode.id}) }}">Show</a>
+									<a role="button" class="btn btn-primary btn-block m-2 px-4" href="{{ path('app_episode_edit', {'id': episode.id}) }}">Edit</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<a role="button" class="btn btn-primary px-4" href="{{ path('app_episode_new') }}">Ajouter Épisode</a>
+			</div>
+		</div>
 	</div>
 {% endblock %}

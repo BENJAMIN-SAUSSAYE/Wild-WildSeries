@@ -17,7 +17,7 @@ class CategoryType extends AbstractType
                 'name',
                 TextType::class,
                 [
-                    'label' => 'CATÉGORIE',
+                    'label' => 'Catégorie',
                     'attr' => [
                         'placeholder' => 'Nom de la catégorie...',
                     ],
