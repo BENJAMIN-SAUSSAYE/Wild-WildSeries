@@ -64,11 +64,10 @@ class ProgramType extends AbstractType
                 [
                     'label' => 'Catégorie',
                     'class' => Category::class,
+                    'choice_label' => 'name',
                     'attr' => [
                         'class' => 'form-select-lg mb-3',
                     ],
-                    'choice_label' => 'name',
-
                     // used to render a select box, check boxes or radios
                     // 'multiple' => true,
                     // 'expanded' => true,
