@@ -30,11 +30,15 @@ class SeasonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $seasonRepository->save($season, true);
+            $this->addFlash(
+                'success',
+                'La saison a été ajoutée'
+            );
 
             return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('season/new.html.twig', [
+        return $this->render('season/new.html.twig', [
             'season' => $season,
             'form' => $form,
         ]);
@@ -57,6 +61,11 @@ class SeasonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $seasonRepository->save($season, true);
 
+            $this->addFlash(
+                'success',
+                'La saison a été modifiée'
+            );
+
             return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -71,6 +80,10 @@ class SeasonController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $season->getId(), $request->request->get('_token'))) {
             $seasonRepository->remove($season, true);
+            $this->addFlash(
+                'danger',
+                'La saison a été supprimée'
+            );
         }
 
         return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);

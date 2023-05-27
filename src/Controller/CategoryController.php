@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/category', name: 'category_')]
+#[Route('/category', name: 'app_category_')]
 class CategoryController extends AbstractController
 {
     #[Route('/', methods: ['GET'], name: 'index')]
@@ -39,9 +39,13 @@ class CategoryController extends AbstractController
             // For example : persiste & flush the entity
             // And redirect to a route that display the result
             $categoryRepository->save($category, true);
+            $this->addFlash(
+                'success',
+                'La nouvelle catégorie a été ajoutée'
+            );
 
             // Redirect to categories list
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
         // Render the form
@@ -51,17 +55,51 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{categoryName}', methods: ['GET'], name: 'show')]
-    public function show(EntityManagerInterface $entityManager, string $categoryName): Response
+    public function show(CategoryRepository $categoryRepository, string $categoryName): Response
     {
-        $category = $entityManager->getRepository(Category::class)->findOneBy(['name' => $categoryName]);
+        $category = $categoryRepository->findOneBy(['name' => $categoryName]);
         if (!$category) {
             throw $this->createNotFoundException(
                 'Aucune catégorie nommée : ' . $categoryName . ' n\'à été trouvée dans la table [category].'
             );
         }
+        return $this->render('category/show.html.twig', ['category' => $category]);
+    }
 
-        //$programs = $entityManager->getRepository(Program::class)->findBy(['category' => $category], ['id' => 'ASC'], 3);
-        $programs = $category->getPrograms();
-        return $this->render('category/show.html.twig', ['programs' => $programs, 'category' => $category]);
+    #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categoryRepository->save($category, true);
+            $this->addFlash(
+                'success',
+                'La catégorie a été modifiée'
+            );
+
+            // Redirect to categories list
+            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('category/edit.html.twig', [
+            'category' => $category,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
+            $categoryRepository->remove($category, true);
+            $this->addFlash(
+                'danger',
+                'La catégorie a été supprimée'
+            );
+        }
+        // Redirect to categories list
+        return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }
