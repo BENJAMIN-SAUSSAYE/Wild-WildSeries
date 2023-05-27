@@ -2,38 +2,15 @@
 
 {% block title %}
 	{{ parent() }}
-	| catégories-New
+	| Catégorie-New
 {% endblock %}
 
 {% block body %}
-	<class="container-fluidm-4p-4">
-		<h1 class="m-4 p-4">Ajouter Une Catégories</h1>
-		<div class="row align-items-center p-4 m-4">
-			{{ form_start(form) }}
-			<div class="row mb-3">
-				<div class="col-auto">
-					{{ form_errors(form) }}
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-auto">
-					{{ form_widget(form) }}
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-12">
-					<button type="submit" class="btn btn-primary mb-3">Ajouter</button>
-				</div>
-			</div>
-			{{ form_end(form) }}
-		</div>
-
-		<div class="row d-flex fixed-bottom mb-3">
-			<div class="col p-4 m-4 d-flex align-items-center justify-content-end">
-				<a class="bottom text-dark fw-bold px-4 fs-3" href="{{ path('category_index') }}">
-					Retour
-				</a>
-			</div>
+	<h1>Nouvelle Catégorie</h1>
+	{{ include('category/_form.html.twig') }}
+	<div class="row d-flex">
+		<div class="col d-flex align-items-center justify-content-end me-4">
+			<a class="text-dark fw-bold px-4 fs-3" href="{{ path('app_category_index') }}">Retour</a>
 		</div>
 	</div>
 {% endblock %}

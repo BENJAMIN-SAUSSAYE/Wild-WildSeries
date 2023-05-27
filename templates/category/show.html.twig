@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}
 	{{ parent() }}
-	| Catégorie #{{ category.id }}
+	| Catégories-Show
+	{{ category.id }}
 {% endblock %}
 
 {% block body %}
@@ -11,13 +12,13 @@
 		</h1>
 		<hr>
 		<div class="card-group">
-			{% for program in programs %}
+			{% for program in category.programs %}
 				<div class="col-md-4 d-flex p-2">
 					<div class="card">
 						<img class="card-img-top object-fit-cover" src="{{ program.poster }}" alt="{{ 'poster ' ~ program.title }}">
 						<div class="card-header text-white bg-dark py-4 d-flex align-items-center justify-content-between">
 							Série
-							<a class="px-3 py-2 text-decoration-none" href="{{ path("category_show", { categoryName: program.category.name }) }}">{{ program.category.name }}</a>
+							<a class="px-3 py-2 text-decoration-none" href="{{ path("app_category_show", { categoryName: program.category.name }) }}">{{ program.category.name }}</a>
 						</div>
 						<div class="card-body text-white bg-primary-light">
 							<h5 class="card-title text-dark fw-bold fs-3">{{ loop.index ~ ' - ' ~ program.title }}</h5>
@@ -28,7 +29,7 @@
 						</div>
 						<div class="card-footer bg-primary">
 							<div class="d-flex align-items-center justify-content-end">
-								<a class="bottom text-white" href="{{ path("program_show", { id: program.id }) }}">Voir la fiche</a>
+								<a class="bottom text-white" href="{{ path("app_program_show", { id: program.id }) }}">Voir la fiche</a>
 							</div>
 						</div>
 					</div>
@@ -39,7 +40,7 @@
 		</div>
 		<div class="row ">
 			<div class="col p-2 m-2 d-flex align-items-center justify-content-end px-4">
-				<a class="text-dark fw-bold fs-5" href="{{ path('program_index') }}">
+				<a class="text-dark fw-bold fs-5" href="{{ path('app_program_index') }}">
 					Retour
 				</a>
 			</div>

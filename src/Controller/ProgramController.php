@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/program', name: 'program_')]
+#[Route('/program', name: 'app_program_')]
 class ProgramController extends AbstractController
 {
     #[Route('/', methods: ['GET'], name: 'index')]
@@ -59,14 +59,54 @@ class ProgramController extends AbstractController
             // For example : persiste & flush the entity
             // And redirect to a route that display the result
             $programRepository->save($program, true);
-
+            $this->addFlash(
+                'success',
+                'La sairie a été ajoutée'
+            );
             // Redirect to categories list
-            return $this->redirectToRoute('program_index');
+            return $this->redirectToRoute('app_program_index');
         }
 
         // Render the form
         return $this->render('program/new.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_program_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Program $program, programRepository $programRepository): Response
+    {
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $programRepository->save($program, true);
+            $this->addFlash(
+                'success',
+                'La série a été modifiée'
+            );
+
+            // Redirect to programs list
+            return $this->redirectToRoute('app_program_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('program/edit.html.twig', [
+            'program' => $program,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    public function delete(Request $request, Program $program, ProgramRepository $programRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $program->getId(), $request->request->get('_token'))) {
+            $programRepository->remove($program, true);
+            $this->addFlash(
+                'danger',
+                'La série a été supprimée'
+            );
+        }
+
+        return $this->redirectToRoute('app_program_index', [], Response::HTTP_SEE_OTHER);
     }
 }
