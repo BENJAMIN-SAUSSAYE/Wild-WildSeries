@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| Acteur-Index
+{% endblock %}
+
+{% block body %}
+	<h1 class="mx-4 p-2">Nos Catégories</h1>
+	<div class="row row-cols-1 row-cols-md-5 g-4 p-2 m-2">
+		{% for actor in actors %}
+			<div class="col">
+				<div class="card h-100">
+					<img class="card-img-top" src="{{ 'https://i.pravatar.cc/150?u=fake@' ~ actor.id }}" alt="{{ 'acteur ' ~ actor.name }}">
+					<div class="card-body text-white bg-primary-light">
+						<h5 class="card-title text-dark fw-bold fs-6">
+							<a class="text-white text-decoration-none" href="{{ path("app_actor_show", { id: actor.id }) }}">{{ actor.name }}</a>
+						</h5>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			Aucun acteur trouvé.
+		{% endfor %}
+	</div>
+{% endblock %}

@@ -24,6 +24,16 @@
 								Aucune saison trouvée.
 							{% endfor %}
 						</p>
+						<p class="p-2">
+							<strong>Acteurs :</strong>
+							<ul>
+								{% for actor in program.actors %}
+									<a class="badge rounded-pill text-dark bg-light px-4 py-2 m-3 text-decoration-none" href="{{ path("app_actor_show", { id : actor.id }) }}">{{ actor.name }}</a>
+								{% else %}
+									<li>Aucun acteur pour cette série</li>
+								{% endfor %}
+							</ul>
+						</p>
 					</div>
 				</div>
 			</div>
