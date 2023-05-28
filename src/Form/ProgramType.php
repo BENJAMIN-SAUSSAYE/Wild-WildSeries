@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Actor;
 use App\Entity\Category;
 use App\Entity\Program;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -75,7 +76,14 @@ class ProgramType extends AbstractType
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
                     ],
                 ],
-            );
+            )
+            ->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
