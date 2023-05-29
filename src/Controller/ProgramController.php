@@ -7,12 +7,13 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
-use App\Repository\SeasonRepository;
 use App\Service\ProgramDuration;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -27,7 +28,7 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function new(Request $request, ProgramRepository $programRepository, SluggerInterface $slugger): Response
+    public function new(Request $request, MailerInterface $mailer, ProgramRepository $programRepository, SluggerInterface $slugger): Response
     {
         // Create a new Category Object
         $program = new Program();
@@ -45,10 +46,23 @@ class ProgramController extends AbstractController
             // For example : persiste & flush the entity
             // And redirect to a route that display the result
             $programRepository->save($program, true);
+
             $this->addFlash(
                 'success',
                 'La sairie a été ajoutée'
             );
+
+            $email = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to(new Address('destinataure@wild.com'))
+                ->subject('Une nouvelle série vient d\'être publiée !')
+                ->html($this->renderView(
+                    'program/newProgramEmail.html.twig',
+                    ['program' => $program]
+                ));
+
+            $mailer->send($email);
+
             // Redirect to categories list
             return $this->redirectToRoute('app_program_index');
         }

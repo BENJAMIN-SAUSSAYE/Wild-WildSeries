@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}Email
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<style>
+				h2 {
+					color: #333;
+				}
+
+				span.ft-red {
+					color: #f62d62;
+				}
+
+				body {
+					background-color: #05668d;
+					color: white;
+				}
+			</style>
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'layoutEmail.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Nouvelle Série
+{% endblock %}
+{% block body %}
+	<h1><img src="{{ absolute_url(asset('build/images/logo.png')) }}" alt="Logo">
+		WILD SÉRIES</h1>
+	<h2>Nouvelle Série
+		<span class="ft-red">{{ program.title }}</span>
+	</h2>
+	<p>Bonjour, la nouvelle série
+		{{ program.title }}
+		vient juste d'être ajoutée sur note site Wild Series</p>
+	<p>Synopsis :
+		{{program.synopsis }}</p>
+{% endblock %}
