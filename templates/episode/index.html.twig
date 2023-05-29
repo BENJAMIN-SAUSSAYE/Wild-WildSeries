@@ -28,7 +28,7 @@
 								<td>{{ episode.synopsis|slice(0, 80) ~ '...' }}</td>
 								<td>
 									<div class="d-inline-flex">
-										<a role="button" class="btn btn-sm text-nowrap btn-dark m-2 px-2" href="{{ path('app_episode_show', {'id': episode.id}) }}">Show</a>
+										<a role="button" class="btn btn-sm text-nowrap btn-dark m-2 px-2" href="{{ path('app_episode_show', {'slug': episode.slug}) }}">Show</a>
 										<a role="button" class="btn btn-sm text-nowrap btn-primary m-2 px-2" href="{{ path('app_episode_edit', {'id': episode.id}) }}">Edit</a>
 										{{ include('episode/_delete_form.html.twig', {'episode': episode}) }}
 									</div>
