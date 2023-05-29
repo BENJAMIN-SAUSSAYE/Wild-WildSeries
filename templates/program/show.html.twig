@@ -18,6 +18,8 @@
 						<hr>
 						<p class="p-4 fs-5">{{ program.synopsis }}</p>
 						<p class="p-2">
+							<hr>
+							<h4>Saisons</h4>
 							{% for season in program.seasons %}
 								<a class="badge rounded-pill text-dark bg-light px-4 py-2 m-3 text-decoration-none" href="{{ path("app_program_season_show", { 'slug' : program.slug, 'season' : season.id }) }}">{{ 'SAISON ' ~ season.number }}</a>
 							{% else %}
@@ -25,14 +27,13 @@
 							{% endfor %}
 						</p>
 						<p class="p-2">
-							<strong>Acteurs :</strong>
-							<ul>
-								{% for actor in program.actors %}
-									<a class="badge rounded-pill text-dark bg-light px-4 py-2 m-3 text-decoration-none" href="{{ path("app_actor_show", { 'id' : actor.id }) }}">{{ actor.name }}</a>
-								{% else %}
-									<li>Aucun acteur pour cette série</li>
-								{% endfor %}
-							</ul>
+							<hr>
+							<h4>Acteurs</h4>
+							{% for actor in program.actors %}
+								<a class="badge rounded-pill text-dark bg-light px-4 py-2 m-3 text-decoration-none" href="{{ path("app_actor_show", { 'id' : actor.id }) }}">{{ actor.name }}</a>
+							{% else %}
+								Aucun acteur pour cette série
+							{% endfor %}
 						</p>
 					</div>
 				</div>
@@ -51,7 +52,9 @@
 					</div>
 				</div>
 				<div class="col-sm-6 col-xl-9">
-					<div class="d-flex justify-content-end bg-primary p-4 border-top">
+					<div class="d-flex justify-content-between bg-primary align-items-center p-4 border-top">
+						<span>Temps Total  :
+							{{ programDuration }}</span>
 						<a class="bottom text-white fw-bold" href="{{ path('app_program_index') }}">Retour</a>
 					</div>
 				</div>
