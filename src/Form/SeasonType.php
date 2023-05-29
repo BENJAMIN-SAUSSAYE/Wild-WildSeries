@@ -20,7 +20,7 @@ class SeasonType extends AbstractType
                 'number',
                 ChoiceType::class,
                 [
-                    'label' => 'Numéro De Saison',
+                    'label' => 'Numéro de saison',
                     'choices' => range(1, 30),
                     'choice_label' => function ($value) {
                         return 'Saison n° ' . $value;
@@ -34,7 +34,7 @@ class SeasonType extends AbstractType
                 'year',
                 ChoiceType::class,
                 [
-                    'label' => 'Année De Sortie',
+                    'label' => 'Année de sortie',
                     'choices' => range(Date('Y'), 1950),
                     'choice_label' => function ($value) {
                         return $value;
