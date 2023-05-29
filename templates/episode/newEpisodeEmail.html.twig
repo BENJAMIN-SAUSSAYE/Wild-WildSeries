@@ -1,0 +1,24 @@
+{% extends 'layoutEmail.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Nouvel Épisode
+{% endblock %}
+{% block body %}
+	<h1><img src="{{ absolute_url(asset('build/images/logo.png')) }}" alt="Logo">
+		WILD SÉRIES</h1>
+	<h2>Nouvelle Épisode
+		<span class="ft-red">{{ episode.title }}</span>
+	</h2>
+	<p>
+		Bonjour,
+		<br>
+		l'épisode n°
+		{{ episode.number }}
+		-
+		{{ episode.title }}, vient juste d'être ajouté à la série
+		{{ episode.season.program.title }}.
+	</p>
+	<p>
+		<a href="{{ absolute_url(path("app_episode_show", { 'slug': episode.slug })) }}">Pour voir la fiche descriptive</a>
+	</p>
+{% endblock %}
