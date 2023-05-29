@@ -7,8 +7,11 @@ use App\Entity\Season;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EpisodeType extends AbstractType
@@ -16,12 +19,24 @@ class EpisodeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
+            ->add(
+                'title',
+                null,
+                [
+                    'label' => 'Titre de l\'épisode',
+                    'attr' => [
+                        'placeholder' => 'titre...',
+                    ],
+                    'row_attr' => [
+                        'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
+                    ],
+                ]
+            )
             ->add(
                 'number',
                 ChoiceType::class,
                 [
-                    'label' => 'Numéro D\'Épisode',
+                    'label' => 'Numéro de l\'épisode',
                     'choices' => range(1, 30),
                     'choice_label' => function ($value) {
                         return 'Épisode n° ' . $value;
@@ -37,7 +52,7 @@ class EpisodeType extends AbstractType
                 [
                     'label' => 'Synopsys',
                     'attr' => [
-                        'placeholder' => 'Synopsis de l\'épisode...',
+                        'placeholder' => 'Synopsis...',
                         'style' => 'height:20vh'
                     ],
                     'row_attr' => [
@@ -63,7 +78,28 @@ class EpisodeType extends AbstractType
                         'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
                     ],
                 ],
-            );
+            )
+            ->add(
+                'duration',
+                NumberType::class,
+                [
+                    'label' => 'Durée de l\'épisode',
+                    'help' => 'durée en minute',
+                    'attr' => [
+                        'placeholder' => 'durée en minutes...',
+                        'min' => '1',
+                    ],
+                    'row_attr' => [
+                        'class' => 'form-row-split my-1 py-2', /* 'input-group' 'form-row-split' 'form-floating' */
+                    ],
+                ],
+            )
+            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+                $episode = $event->getData();
+                if (null !== $episode->getTitle()) {
+                    $episode->setSlug($episode->getTitle());
+                }
+            });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

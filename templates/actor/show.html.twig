@@ -21,7 +21,7 @@
 					<hr class="bg-light">
 					<p class="card-text">
 						{% for program in actor.programs %}
-							<a class="badge rounded-pill bg-dark px-4 py-2 m-3 text-decoration-none" href="{{ path('app_program_show', {'id': program.id}) }}">{{ program.title }}</a>
+							<a class="badge rounded-pill bg-dark px-4 py-2 m-3 text-decoration-none" href="{{ path('app_program_show', {'slug': program.slug}) }}">{{ program.title }}</a>
 						{% else %}
 							Aucune série associée.
 						{% endfor %}

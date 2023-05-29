@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProgramType extends AbstractType
@@ -83,7 +85,23 @@ class ProgramType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'by_reference' => false,
-            ]);
+            ])
+            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+                $program = $event->getData();
+                if (null !== $program->getTitle()) {
+                    $program->setSlug($program->getTitle());
+                }
+            })
+            // ->add('Enregistrer', SubmitType::class, [
+            //     'label' => 'Enregistrer',
+            //     'attr' => [
+            //         'class' => 'btn btn-sm text-nowrap btn-primary m-2 px-2',
+            //     ],
+            //     'row_attr' => [
+            //         'class' => 'form-row-split px-5', /* 'input-group' 'form-row-split' 'form-floating' */
+            //     ],
+            // ])
+            ->getForm();
     }
 
     public function configureOptions(OptionsResolver $resolver): void

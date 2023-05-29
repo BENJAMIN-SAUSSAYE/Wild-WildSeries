@@ -18,7 +18,7 @@
 						<img class="card-img-top object-fit-cover" src="{{ program.poster }}" alt="{{ 'poster ' ~ program.title }}">
 						<div class="card-header text-white bg-dark py-4 d-flex align-items-center justify-content-between">
 							Série
-							<a class="px-3 py-2 text-decoration-none" href="{{ path("app_category_show", { categoryName: program.category.name }) }}">{{ program.category.name }}</a>
+							<a class="px-3 py-2 text-decoration-none" href="{{ path("app_category_show", { 'categoryName': program.category.name }) }}">{{ program.category.name }}</a>
 						</div>
 						<div class="card-body text-white bg-primary-light">
 							<h5 class="card-title text-dark fw-bold fs-3">{{ loop.index ~ ' - ' ~ program.title }}</h5>
@@ -29,7 +29,7 @@
 						</div>
 						<div class="card-footer bg-primary">
 							<div class="d-flex align-items-center justify-content-end">
-								<a class="bottom text-white" href="{{ path("app_program_show", { id: program.id }) }}">Voir la fiche</a>
+								<a class="bottom text-white" href="{{ path("app_program_show", { 'slug': program.slug }) }}">Voir la fiche</a>
 							</div>
 						</div>
 					</div>
