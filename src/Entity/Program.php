@@ -21,17 +21,17 @@ class Program
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
+    #[Assert\NotBlank(groups: ['programValidation'])]
+    #[Assert\Length(max: 255, groups: ['programValidation'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank]
-    #[Assert\Regex('#^((?!plus belle la vie).)*$#', message: 'On parle de vraies séries ici')]
+    #[Assert\NotBlank(groups: ['programValidation'])]
+    #[Assert\Regex('#^((?!plus belle la vie).)*$#', message: 'On parle de vraies séries ici', groups: ['programValidation'])]
     private ?string $synopsis = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Length(max: 255)]
+    #[Assert\Length(max: 255, groups: ['programValidation'])]
 
     private ?string $poster = null;
 
@@ -46,10 +46,6 @@ class Program
     private Collection $actors;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(
-        max: 255
-    )]
     private ?string $slug = null;
 
 

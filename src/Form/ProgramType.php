@@ -79,35 +79,33 @@ class ProgramType extends AbstractType
                     ],
                 ],
             )
-            ->add('actors', EntityType::class, [
-                'class' => Actor::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'by_reference' => false,
-            ])
-            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-                $program = $event->getData();
-                if (null !== $program->getTitle()) {
-                    $program->setSlug($program->getTitle());
-                }
-            })
-            // ->add('Enregistrer', SubmitType::class, [
-            //     'label' => 'Enregistrer',
-            //     'attr' => [
-            //         'class' => 'btn btn-sm text-nowrap btn-primary m-2 px-2',
-            //     ],
-            //     'row_attr' => [
-            //         'class' => 'form-row-split px-5', /* 'input-group' 'form-row-split' 'form-floating' */
-            //     ],
-            // ])
-            ->getForm();
+            ->add(
+                'actors',
+                EntityType::class,
+                [
+                    'class' => Actor::class,
+                    'choice_label' => 'name',
+                    'multiple' => true,
+                    'expanded' => true,
+                    'by_reference' => false,
+                ]
+                // ->add('Enregistrer', SubmitType::class, [
+                //     'label' => 'Enregistrer',
+                //     'attr' => [
+                //         'class' => 'btn btn-sm text-nowrap btn-primary m-2 px-2',
+                //     ],
+                //     'row_attr' => [
+                //         'class' => 'form-row-split px-5', /* 'input-group' 'form-row-split' 'form-floating' */
+                //     ],
+                // ])
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Program::class,
+            'validation_groups' => ['programValidation']
         ]);
     }
 }
