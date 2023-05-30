@@ -22,29 +22,24 @@ class Episode
     private ?Season $season = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
+    #[Assert\NotBlank(groups: ['episodeValidation'])]
+    #[Assert\Length(max: 255, groups: ['episodeValidation'])]
 
     private ?string $title = null;
 
     #[ORM\Column]
-    #[Assert\Positive]
+    #[Assert\Positive(groups: ['episodeValidation'])]
     private ?int $number = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Assert\EnableAutoMapping]
     private ?string $synopsis = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank]
-    #[Assert\Positive]
+    #[Assert\NotBlank(groups: ['episodeValidation'])]
+    #[Assert\Positive(groups: ['episodeValidation'])]
     private ?int $duration = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(
-        max: 255
-    )]
     private ?string $slug = null;
 
     public function getId(): ?int

@@ -8,6 +8,7 @@ use App\Entity\Season;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
 use App\Service\ProgramDuration;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -88,7 +89,10 @@ class ProgramController extends AbstractController
         return $this->render('program/season_show.html.twig', ['program' => $program, 'season' => $season]);
     }
 
-    #[Route('/{program}/season/{season}/episode/{slug}', requirements: ['program' => '\d+', 'season' => '\d+'], methods: ['GET'], name: 'episode_show')]
+    #[Route('/{program}/season/{season}/episode/{episode}', requirements: ['season' => '\d+'], methods: ['GET'], name: 'episode_show')]
+    #[ParamConverter('program', options: ['mapping' => ['program' => 'slug']])]
+    #[ParamConverter('episode', options: ['mapping' => ['episode' => 'slug']])]
+
     public function showEpisode(Program $program, Season $season, Episode $episode): Response
     {
         return $this->render('program/episode_show.html.twig', ['program' => $program, 'season' => $season, 'episode' => $episode]);

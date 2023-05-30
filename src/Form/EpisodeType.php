@@ -94,18 +94,14 @@ class EpisodeType extends AbstractType
                     ],
                 ],
             )
-            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-                $episode = $event->getData();
-                if (null !== $episode->getTitle()) {
-                    $episode->setSlug($episode->getTitle());
-                }
-            });
+            ->remove('slug');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Episode::class,
+            'validation_groups' => ['episodeValidation'],
         ]);
     }
 }

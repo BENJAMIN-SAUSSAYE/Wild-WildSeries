@@ -24,7 +24,7 @@
 						<p class="px-4 fs-5 text-white fw-light">{{ 'Nombre dépisode(s) : ' ~ season.episodes|length }}</p>
 						<div class="container p-1" id="mySeasonGroup">
 							{% for episode in season.episodes %}
-								<a class="badge rounded-pill bg-dark px-4 py-2 m-3 text-decoration-none" href="{{ path('app_program_episode_show', { 'program': program.id, 'season': season.id, 'slug': episode.slug}) }}">{{ 'Épisode ' ~ episode.number }}</a>
+								<a class="badge rounded-pill bg-dark px-4 py-2 m-3 text-decoration-none" href="{{ path('app_program_episode_show', { 'program': program.slug, 'season': season.id, 'episode': episode.slug}) }}">{{ 'Épisode ' ~ episode.number }}</a>
 							{% else %}
 								Aucun épisode trouvé.
 							{% endfor %}
