@@ -19,6 +19,6 @@
 		{{program.synopsis }}
 	</p>
 	<br>
-	<a href="{{ absolute_url(path("app_program_show", { 'program': program.slug })) }}" target="_blanc">Voir la fiche de la série :{{ program.title }}
+	<a href="{{ absolute_url(path("app_program_show", { 'slug': program.slug })) }}" target="_blanc">Voir la fiche de la série :{{ program.title }}
 	</a>
 {% endblock %}
