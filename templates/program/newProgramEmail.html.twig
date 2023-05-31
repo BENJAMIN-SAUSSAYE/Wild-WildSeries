@@ -9,9 +9,16 @@
 	<h2>Nouvelle Série
 		<span class="ft-red">{{ program.title }}</span>
 	</h2>
-	<p>Bonjour, la nouvelle série
-		{{ program.title }}
-		vient juste d'être ajoutée sur note site Wild Series</p>
+	<p>Bonjour,
+	</p>
+	<p>la nouvelle série
+		{{ program.title }}</p><hr>
+	<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="{{ absolute_url(vich_uploader_asset(program)) }}" alt="{{ 'poster ' ~ program.title }}">
+	<p>vient juste d'être ajoutée sur note site Wild Series</p>
 	<p>Synopsis :
-		{{program.synopsis }}</p>
+		{{program.synopsis }}
+	</p>
+	<br>
+	<a href="{{ absolute_url(path("app_program_show", { 'program': program.slug })) }}" target="_blanc">Voir la fiche de la série :{{ program.title }}
+	</a>
 {% endblock %}

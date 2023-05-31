@@ -100,8 +100,7 @@ class EpisodeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Episode::class,
-            'validation_groups' => ['episodeValidation'],
+            'data_class' => Episode::class
         ]);
     }
 }

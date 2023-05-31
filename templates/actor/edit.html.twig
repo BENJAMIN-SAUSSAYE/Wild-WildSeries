@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier-Série
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid p-md-4">
+
+		<div class="row d-flex mb-3">
+			<h1 class="mb-3 p-2">Modifier L'Acteur</h1>
+			{{ include('actor/_form.html.twig', {'button_label': 'Modifier'}) }}
+		</div>
+		<div class="row d-flex">
+			<div class="col d-flex align-items-center justify-content-between me-4">
+				{{ include('actor/_delete_form.html.twig') }}
+				<a class="text-dark fw-bold px-4 fs-3" href="{{ path('app_actor_index') }}">Retour</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

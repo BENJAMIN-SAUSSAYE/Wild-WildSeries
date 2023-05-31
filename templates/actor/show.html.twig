@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="d-flex flex-md-row flex-column text-white bg-primary-light d-flex align-items-start">
-				<img class="w-sm-50 w-100" src="{{ 'https://i.pravatar.cc/150?u=fake@' ~ actor.id }}" alt="{{ 'acteur ' ~ actor.name }}">
+				<img class="w-sm-50 w-100" src="{{ actor.actorImage is not empty ? vich_uploader_asset(actor) : asset('build/images/placeholder_acteur.svg') }}" alt=" {{ 'acteur ' ~ actor.name }} ">
 				<div class="d-flex flex-column justify-content-end p-2 m-2">
 					<h5 class="text-light fw-bold fs-3">Liste des séries</h5>
 					<hr class="bg-light">
