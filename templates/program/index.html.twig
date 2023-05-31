@@ -22,7 +22,7 @@
 			{% for program in programs %}
 				<div class="col-md-3 d-flex p-2">
 					<div class="card">
-						<img class="card-img-top object-fit-cover" src="{{ program.poster }}" alt="{{ 'poster ' ~ program.title }}">
+						<img class="card-img-top object-fit-cover" src="{{ program.poster is not empty ? vich_uploader_asset(program) : asset('build/images/placeholder_serie.svg') }}" alt="{{ 'poster ' ~ program.title }}">
 						<div class="card-header text-white bg-dark py-4 d-flex align-items-center justify-content-between">
 							Série
 							<div>

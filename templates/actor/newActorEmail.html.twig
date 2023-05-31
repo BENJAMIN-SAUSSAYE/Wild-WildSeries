@@ -1,0 +1,23 @@
+{% extends 'layoutEmail.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Nouvel Acteur
+{% endblock %}
+{% block body %}
+	<h1><img src="{{ absolute_url(asset('build/images/logo.png')) }}" alt="Logo">
+		WILD SÉRIES</h1>
+	<h2>Nouvel Acteur
+		<span class="ft-red">{{ actor.name }}</span>
+	</h2>
+	<p>Bonjour,
+	</p>
+	<p>L'acteur
+		{{ actor.name }}</p>
+	<hr>
+	<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="{{ absolute_url(vich_uploader_asset(actor)) }}" alt="{{ 'actor ' ~ actor.name }}">
+	<p>vient juste d'être ajouté sur note site Wild Series</p>
+	<br>
+	<a href="{{ absolute_url(path("app_actor_show", { 'actor': actor.id })) }}" target="_blanc">Voir la fiche de l'acteur :{{ actor.name }}
+	</a>
+
+{% endblock %}

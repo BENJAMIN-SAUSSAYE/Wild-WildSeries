@@ -10,7 +10,7 @@
 		<div class="d-flex flex-column justify-content-center mx-sm-2 m-auto my-sm-2">
 			<div class="row flex-sm-row mt-5 px-sm-2 gx-0">
 				<div class="col-sm-5 col-lg-4 border-end">
-					<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="{{ program.poster }}" alt="{{ 'poster ' ~ program.title }}">
+					<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="{{ program.poster is not empty ? vich_uploader_asset(program) : asset('build/images/placeholder_serie.svg') }}" alt="{{ 'poster ' ~ program.title }}">
 				</div>
 				<div class="col-sm-7 col-lg-8 text-white bg-primary-light">
 					<div class="p-2">
@@ -30,7 +30,7 @@
 							<hr>
 							<h4>Acteurs</h4>
 							{% for actor in program.actors %}
-								<a class="badge rounded-pill text-dark bg-light px-4 py-2 m-3 text-decoration-none" href="{{ path("app_actor_show", { 'id' : actor.id }) }}">{{ actor.name }}</a>
+								<a class="badge rounded-pill text-dark bg-light px-4 py-2 m-3 text-decoration-none" href="{{ path("app_actor_show", { 'actor' : actor.id }) }}">{{ actor.name }}</a>
 							{% else %}
 								Aucun acteur pour cette série
 							{% endfor %}

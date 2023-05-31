@@ -50,7 +50,7 @@ class ProgramController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'La sairie a été ajoutée'
+                'La série a été ajoutée'
             );
 
             $email = (new Email())
@@ -98,9 +98,7 @@ class ProgramController extends AbstractController
         return $this->render('program/episode_show.html.twig', ['program' => $program, 'season' => $season, 'episode' => $episode]);
     }
 
-
-
-    #[Route('/{id}/edit', name: 'app_program_edit', methods: ['GET', 'POST'])]
+    #[Route('/{program}/edit', requirements: ['program' => '\d+'],  name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Program $program, programRepository $programRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ProgramType::class, $program);

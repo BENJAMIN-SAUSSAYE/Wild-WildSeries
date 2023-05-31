@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: EpisodeRepository::class)]
-#[Assert\EnableAutoMapping]
 class Episode
 {
     #[ORM\Id]
@@ -22,13 +21,13 @@ class Episode
     private ?Season $season = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(groups: ['episodeValidation'])]
-    #[Assert\Length(max: 255, groups: ['episodeValidation'])]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
 
     private ?string $title = null;
 
     #[ORM\Column]
-    #[Assert\Positive(groups: ['episodeValidation'])]
+    #[Assert\Positive]
     private ?int $number = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

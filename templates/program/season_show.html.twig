@@ -10,7 +10,7 @@
 		<div class="d-flex flex-column justify-content-center mx-sm-2 m-auto my-sm-2">
 			<div class="row mt-5 px-sm-5 gx-0">
 				<div class="col-xl-3 border-end">
-					<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="{{ program.poster }}" alt="{{ 'poster ' ~ program.title }}">
+					<img class="img-thumbnail w-100 h-100 d-inline-block m-0 p-0" src="{{ program.poster is not empty ? vich_uploader_asset(program) : asset('build/images/placeholder_serie.svg') }}" alt="{{ 'poster ' ~ program.title }}">
 				</div>
 				<div class="col-xl-9 text-white bg-primary-light">
 					<div class="p-2">
