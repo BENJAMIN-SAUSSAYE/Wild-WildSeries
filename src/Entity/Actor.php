@@ -112,7 +112,7 @@ class Actor
         return $this;
     }
 
-    public function setActorImageFile(File $image = null): Actor
+    public function setActorImageFile(File $image = null): self
     {
         $this->actorImageFile = $image;
         if ($image) {
