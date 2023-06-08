@@ -55,7 +55,7 @@
 			</div>
 		</div>
 		<div class="row gx-5 px-sm-5">
-			{% for comment in episode.comments("id", "desc")%}
+			{% for comment in episode.comments|sort|reverse %}
 				<div class="col-sm-6 col-md-4 gy-2 gap-2">
 					<div class="card comment border border-2 rounded-4 ">
 						<div class="card-body">
