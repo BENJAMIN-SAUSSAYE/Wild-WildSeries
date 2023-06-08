@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Administration
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+{% block navbar %}
+	{% include 'components/admin/_admin_navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+	<main class="container-fluid">
+		<div class="container-admin p-1 p-md-4 m-1 m-md-4">
+			<section>
+				<div class="d-flex flex-column justify-content-center align-items-center row m-auto mt-3">
+					<h1 class="text-center fw-bold text-uppercase text-light">
+						{% block admin_content_title %}{% endblock %}
+					</h1>
+					<div>
+						{% block admin_content %}{% endblock %}
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+{% endblock %}
+{% block footer %}{% endblock %}

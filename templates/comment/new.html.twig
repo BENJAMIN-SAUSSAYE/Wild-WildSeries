@@ -1,0 +1,16 @@
+{% extends 'admin_layout.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Acteur-New
+{% endblock %}
+{% block admin_content_title %}Création d'un acteur
+{% endblock %}
+{% block admin_content %}
+	{{ include('comment/_form.html.twig') }}
+	<div class="row d-flex">
+		<div class="col d-flex align-items-center justify-content-between me-4">
+			<a class="text-light text-nowrap m-2 px-3" href="{{ path('app_comment_index') }}">Retour</a>
+		</div>
+	</div>
+{% endblock %}

@@ -1,95 +1,29 @@
-@font-face {
-  font-family: "Goldman";
-  src: url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap");
+//start coding by removing this file and adding yours ;)
+@import "_themes.scss";
+@import "_navbar.scss";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-title;
+  color: $primary-light;
+  letter-spacing: 2px;
 }
-
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-
-// customize some Bootstrap variables
-$primary: #05668d;
-$primary-light: #028090;
-$secondary: #00a896;
-$secondary-light: #02c39a;
-$intermediate: #f0f3bd;
-
-// merge with existing $theme-colors map
-$theme-colors: map-merge(
-  $theme-colors,
-  (
-    "primary": $primary,
-    "primary-light": $primary-light,
-    "secondary": $secondary,
-    "secondary-light": $secondary-light,
-    "intermediate": $intermediate,
-  )
-);
-
-// the ~ allows you to reference things in node_modules
-@import "~bootstrap/scss/bootstrap";
 
 body {
   height: 100vh;
 }
 
-.masthead {
-  background-image: url("../images/home.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 90%;
-  justify-content: center;
-  align-items: end;
-  display: flex;
-  height: 88%;
-  width: 100%;
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0;
 }
-
-.masthead .masthead-heading {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  margin-block-end: 20vh;
-  text-shadow: 8px 8px 4px black, 8px 8px 4px black;
+.comment .card-text {
+  max-height: 8vh;
+  overflow-y: auto;
 }
-
-.divider-custom {
-  margin: 1.25rem 0 1.5rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.divider-custom.divider-light .divider-custom-icon,
-.divider-custom.divider-light .divider-custom-line {
-  background-color: #fff;
-}
-
-.divider-custom .divider-custom-line:first-child {
-  margin-right: 1rem;
-}
-
-.divider-custom .divider-custom-line:last-child {
-  margin-left: 1rem;
-}
-
-.divider-custom .divider-custom-line {
-  width: 100%;
-  max-width: 7rem;
-  height: 0.25rem;
-  background-color: #2c3e50;
-  border-radius: 1rem;
-  border-color: #2c3e50;
-}
-
-.divider-custom .divider-custom-icon {
-  color: #2c3e50;
-  font-size: 2rem;
-}
-
-.masthead-subheading {
-  font-size: 2rem;
+.comment .card-body {
+  min-height: 25vh;
 }

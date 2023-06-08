@@ -1,0 +1,17 @@
+@import "_variables.scss";
+
+.container-admin {
+  border: 1px solid $primary;
+  background: #028090;
+  /*background: $card-gradient-color;*/
+  border-radius: var(--bs-border-radius);
+  box-shadow: $shadow-primary;
+}
+form legend,
+form label {
+  color: $light;
+}
+
+textarea.form-control {
+  min-height: 15vh;
+}

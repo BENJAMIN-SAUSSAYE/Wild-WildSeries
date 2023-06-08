@@ -33,7 +33,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
+        // Tu retournes ici toutes les classes de fixtures dont SeasonFixtures dépend
         return [
             ProgramFixtures::class,
         ];

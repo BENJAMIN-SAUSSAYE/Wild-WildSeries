@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'visitor_layout.html.twig' %}
 
 {% block title %}
 	{{ parent() }}
@@ -33,7 +33,6 @@
 			{% else %}
 				Aucune catégorie trouvée.
 			{% endfor %}
-
 		</div>
 		<div class="row d-flex fixed-bottom">
 			<div class="col p-4 m-4 d-flex align-items-center justify-content-end">

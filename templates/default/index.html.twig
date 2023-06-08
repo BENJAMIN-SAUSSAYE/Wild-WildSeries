@@ -1,7 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'visitor_layout.html.twig' %}
 {% block title %}
 	{{ parent() }}
 	| Home
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
 {% endblock %}
 {% block body %}
 	<div class="masthead bg-dark text-white text-center">
