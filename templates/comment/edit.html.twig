@@ -1,0 +1,16 @@
+{% extends 'admin_layout.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	Édition-Commentaire
+{% endblock %}
+{% block admin_content_title %}Édition du commentaire
+{% endblock %}
+{% block admin_content %}
+	{{ include('comment/_form.html.twig', {'button_label': 'Modifier'}) }}
+	<div class="row d-flex">
+		<div class="col d-flex align-items-center justify-content-between me-4">
+			<a class="text-light text-nowrap m-2 px-3" href="{{ path('app_comment_index') }}">Retour</a>
+			{{ include('comment/_delete_form.html.twig') }}
+		</div>
+	</div>
+{% endblock %}

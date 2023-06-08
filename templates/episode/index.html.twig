@@ -1,52 +1,53 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Épisodes-index
+{% extends 'admin_layout.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	Liste-Épisodes
 {% endblock %}
-
-{% block body %}
-	<div class="container p-md-4">
-		<h1 class="mb-3 p-2">Liste Des Épisodes</h1>
-		<hr>
-		<div class="d-flex flex-column justify-content-center">
-			<div class="row mb-3">
-				<table class="table table-sm table-striped table-hover">
-					<thead>
-						<tr>
-							<th scope="col" class="w-10">ID</th>
-							<th scope="col" class="w-20">TITRE</th>
-							<th scope="col" class="w-10">NUMBER</th>
-							<th scope="col" class="w-30">SYNOPSYS</th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for episode in episodes %}
-							<tr>
-								<td scope="row">{{ episode.id }}</td>
-								<td>{{ episode.title }}</td>
-								<td>{{ episode.number }}</td>
-								<td>{{ episode.synopsis|slice(0, 80) ~ '...' }}</td>
-								<td>
-									<div class="d-inline-flex">
-										<a role="button" class="btn btn-sm text-nowrap btn-dark m-2 px-2" href="{{ path('app_episode_show', {'slug': episode.slug}) }}">Show</a>
-										<a role="button" class="btn btn-sm text-nowrap btn-primary m-2 px-2" href="{{ path('app_episode_edit', {'id': episode.id}) }}">Edit</a>
-										{{ include('episode/_delete_form.html.twig', {'episode': episode}) }}
-									</div>
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="5">no records found</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="row mb-3">
-			<div class="col">
-				<a role="button" class="btn btn-sm text-nowrap btn-primary m-2 px-2" href="{{ path('app_episode_new') }}">Ajouter Épisode</a>
-			</div>
-		</div>
+{% block admin_content_title %}Liste des épisodes
+{% endblock %}
+{% block admin_content %}
+	<a role="button" class="btn btn-outline-light btn-secondary m-2 px-3" href="{{ path('app_episode_new') }}">
+		<svg class="mx-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
+			<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+		</svg>
+		Ajouter
+	</a>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered border-secondary bg-light mt-4">
+			<thead>
+				<tr class="py-4">
+					<th scope="col" class="th-lg py-3 px-4 bg-secondary">NUMBER</th>
+					<th scope="col" class="th-lg py-3 px-4 bg-secondary">TITRE</th>
+					<th scope="col" class="th-lg py-3 px-4 bg-secondary">SYNOPSYS</th>
+					<th scope="col" class="th-lg py-3 px-4 bg-secondary">SAISON</th>
+					<th scope="col" class="th-lg py-3 px-4 bg-secondary"></th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for episode in episodes %}
+					<tr>
+						<td class="px-4">{{ episode.number }}</td>
+						<td class="px-4">{{ episode.title }}</td>
+						<td class="px-4">{{ episode.synopsis|slice(0, 20) ~ '...' }}</td>
+						<td class="px-4">
+							<span class="badge rounded-pill text-bg-primary">{{ 'Saison n° ' ~ episode.season.number }}</span>
+						</td>
+						<td class="text-center p-2">
+							<a role="button" class="btn btn-sm btn-outline-primary text-nowrap m-2 px-3" href="{{ path('app_episode_edit', {'id': episode.id}) }}">
+								<svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewbox="0 0 16 16">
+									<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+								</svg>
+								Éditer
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 {% endblock %}

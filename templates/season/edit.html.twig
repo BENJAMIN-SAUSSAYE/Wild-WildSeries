@@ -1,19 +1,16 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Modifier-Saison
+{% extends 'admin_layout.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	Édition-Saison
 {% endblock %}
-
-{% block body %}
-	<div class="container-fluid p-md-4">
-		<h1 class="mb-3 p-2">Modifier La Saison</h1>
-		<div class="row d-flex mb-3">
-			{{ include('season/_form.html.twig', {'button_label': 'Modifier'}) }}
-		</div>
-		<div class="row d-flex">
-			<div class="col d-flex align-items-center justify-content-between me-4">
-				{{ include('season/_delete_form.html.twig') }}
-				<a class="text-dark fw-bold px-4 fs-3" href="{{ path('app_season_index') }}">Retour</a>
-			</div>
+{% block admin_content_title %}Édition de la saison
+{% endblock %}
+{% block admin_content %}
+	{{ include('season/_form.html.twig', {'button_label': 'Modifier'}) }}
+	<div class="row d-flex">
+		<div class="col d-flex align-items-center justify-content-between me-4">
+			<a class="text-light text-nowrap m-2 px-3" href="{{ path('app_season_index') }}">Retour</a>
+			{{ include('season/_delete_form.html.twig') }}
 		</div>
 	</div>
 {% endblock %}

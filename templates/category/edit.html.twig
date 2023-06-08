@@ -1,19 +1,16 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Modifier-Category
+{% extends 'admin_layout.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	Édition-Catégorie
 {% endblock %}
-
-{% block body %}
-	<div class="container-fluid p-md-4">
-		<h1 class="mb-3 p-2">Modifier La Catégorie</h1>
-		<div class="row d-flex mb-3">
-			{{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
-		</div>
-		<div class="row d-flex">
-			<div class="col d-flex align-items-center justify-content-between me-4">
-				{{ include('category/_delete_form.html.twig') }}
-				<a class="text-dark fw-bold px-4 fs-3" href="{{ path('app_category_index') }}">Retour</a>
-			</div>
+{% block admin_content_title %}Édition de la catégorie
+{% endblock %}
+{% block admin_content %}
+	{{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
+	<div class="row d-flex">
+		<div class="col d-flex align-items-center justify-content-between me-4">
+			<a class="text-light text-nowrap m-2 px-3" href="{{ path('app_category_index') }}">Retour</a>
+			{{ include('category/_delete_form.html.twig') }}
 		</div>
 	</div>
 {% endblock %}

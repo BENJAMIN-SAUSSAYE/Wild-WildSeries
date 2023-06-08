@@ -37,6 +37,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
                     $slug = $this->slugger->slug($episode->getTitle());
                     $episode->setSlug($slug);
                     $manager->persist($episode);
+                    $this->addReference('episode_' . strval($i) . strval($s) . strval($e), $episode);
                 }
             }
         }
@@ -45,7 +46,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
+        // Tu retournes ici toutes les classes de fixtures dont EpisodeFixtures dépend
         return [
             SeasonFixtures::class,
         ];

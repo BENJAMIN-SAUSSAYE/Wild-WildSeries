@@ -1,0 +1,26 @@
+// customize some Bootstrap variables
+$primary: #05668d;
+$primary-light: #028090;
+$secondary: #00a896;
+$secondary-light: #02c39a;
+$dark: #08080b;
+$dark-light: #0e0d12;
+$light: #fbfbfb;
+$intermediate: #b9bbbb;
+
+$font-base: "Roboto", sans-serif;
+$font-title: "Orbitron", sans-serif;
+$font-family-base: $font-base;
+
+$navbar-height: 65px;
+
+$dropdown-link-hover-bg: $secondary-light;
+$dropdown-link-hover-color: $secondary;
+
+$shadow-primary: 0.5rem 0.5rem 2rem rgba(189, 173, 53, 0.175);
+
+$card-gradient-color: linear-gradient(
+  90deg,
+  rgba(5, 102, 141, 1) 0%,
+  rgba(185, 187, 187, 1) 100%
+);

@@ -1,49 +1,47 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Saisons-index
+{% extends 'admin_layout.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	Liste-Saisons
 {% endblock %}
+{% block admin_content_title %}Liste des saisons
+{% endblock %}
+{% block admin_content %}
+	<table class="table table-striped table-hover table-bordered border-secondary bg-light mt-4">
+		<thead>
+			<tr>
+				<th scope="col" class="th-lg py-3 px-4 bg-secondary">NUMÉRO</th>
+				<th scope="col" class="th-lg py-3 px-4 bg-secondary">ANNÉE</th>
+				<th scope="col" class="th-lg py-3 px-4 bg-secondary">DESCRIPTION</th>
+				<th scope="col" class="th-lg py-3 px-4 bg-secondary"></th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			{% for season in seasons %}
+				<tr>
+					<td class="px-4">{{ season.number }}</td>
+					<td class="px-4">{{ season.year }}</td>
+					<td class="px-4">{{ season.description|slice(0, 20) ~ '...' }}</td>
+					<td class="d-flex align-items-center justify-content-end">
+						<a role="button" class="btn btn-sm btn-outline-primary text-nowrap m-2 px-3" href="{{ path('app_season_edit', {'id': season.id}) }}">
+							<svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewbox="0 0 16 16">
+								<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+							</svg>
+							Éditer
+						</a>
 
-{% block body %}
-	<div class="container p-md-4">
-		<h1 class="mb-3 p-2">Liste Des Saisons</h1>
-		<hr>
-		<div class="d-flex flex-column justify-content-center">
-			<div class="row mb-3">
-				<table class="table table-sm table-striped table-hover">
-					<thead>
-						<tr>
-							<th scope="col" class="w-5">Id</th>
-							<th scope="col" class="w-15">Number</th>
-							<th scope="col" class="w-5">Year</th>
-							<th scope="col" class="w-50">Description</th>
-							<th scope="col" class="w-25">actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for season in seasons %}
-							<tr>
-								<td scope="row">{{ season.id }}</td>
-								<td>{{ season.number }}</td>
-								<td>{{ season.year }}</td>
-								<td>{{ season.description|slice(0, 150) ~ '...' }}</td>
-								<td class="d-inline-flex">
-									<a role="button" class="btn btn-sm btn-dark m-2 px-2" href="{{ path('app_season_show', {'id': season.id}) }}">Show</a>
-									<a role="button" class="btn btn-sm btn-primary m-2 px-2" href="{{ path('app_season_edit', {'id': season.id}) }}">Edit</a>
-								</td>
-							</tr>
-						{% else %}
-							<tr class="table-dark">
-								<td colspan="5">no records found</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="row mb-3">
-			<div class="col">
-				<a role="button" class="btn btn-sm btn-primary m-2 px-2" href="{{ path('app_season_new') }}">Ajouter Saison</a>
-			</div>
-		</div>
-	</div>
+						<a role="button" class="btn btn-sm btn-outline-primary text-nowrap m-2 px-3" href="{{ path('app_season_show', {'id': season.id}) }}">
+							<svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewbox="0 0 16 16">
+								<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+							</svg>
+							Afficher
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr class="table-dark">
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'visitor_layout.html.twig' %}
 {% block title %}
 	{{ parent() }}
 	| Saison
@@ -8,10 +8,10 @@
 {% block body %}
 	<div class="container-fluid">
 		<div class="d-flex flex-column justify-content-center mx-sm-2 m-auto my-sm-2">
-			<div class="row mt-5 px-sm-5 gx-0">
+			<div class="row mt-5 px-sm-5">
 				<div class="col-xl-12 text-white bg-primary-light">
 					<div class="p-4 d-flex flex-column justify-content-start">
-						<h1 class="fs-2 px-2">{{ program.title }}</h1>
+						<h1 class="fs-2 px-2 text-white">{{ program.title }}</h1>
 						<hr>
 					</div>
 					<div class="p-4">
@@ -24,8 +24,8 @@
 				</div>
 			</div>
 
-			<div class="row px-sm-5 gx-0">
-				<div class="col-sm-6 col-xl-4 border-end">
+			<div class="row px-sm-5">
+				<div class="border-end p-0">
 					<div class="d-flex justify-content-between text-white bg-dark p-4 border-top">
 						Série
 						<div>
@@ -37,12 +37,37 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 col-xl-8">
-					<div class="d-flex justify-content-end bg-primary p-4 border-top">
-						<a class="bottom text-white fw-bold" href="{{ path('app_program_index') }}">Retour</a>
+			</div>
+			<div class="row px-sm-5">
+				<div class="border-end p-0">
+					<div class="d-flex align-items-center justify-content-between bg-primary p-4 border border-dark bg-secondart">
+						<div>
+							{% if app.user %}
+								<a role="button" class="btn btn-outline-light text-light bg-dark fw-bold" href="{{ path('app_comment_new', {'episode': episode.id, 'user' : app.user.id }) }}">Ajouter un commentair</a>
+							{% endif %}
+						</div>
+						<div>
+							{# <a class="btn btn-outline-secondary text-dark fw-bold" href="{{ path('app_program_index') }}">Retour</a> #}
+							<a class="bottom text-white fw-bold" href="{{ path('app_program_index') }}">Retour</a>
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="row gx-5 px-sm-5">
+			{% for comment in episode.comments("id", "desc")%}
+				<div class="col-sm-6 col-md-4 gy-2 gap-2">
+					<div class="card comment border border-2 rounded-4 ">
+						<div class="card-body">
+							<span class="badge rounded-pill text-bg-primary mb-2">{{ comment.id }}</span>
+							<h5 class="card-title">{{ comment.author.email}}</h5>
+							<p class="card-text max-height-20">{{ comment.comment }}.</p>
+							<span class="badge rounded-pill text-bg-dark">Note :
+								{{ comment.rate }}</span>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}

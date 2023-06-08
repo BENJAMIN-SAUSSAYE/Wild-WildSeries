@@ -1,16 +1,15 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'admin_layout.html.twig' %}
 {% block title %}
 	{{ parent() }}
-	| Catégorie-New
+	Création-Catégorie
 {% endblock %}
-
-{% block body %}
-	<h1>Nouvelle Catégorie</h1>
+{% block admin_content_title %}Création d'une catégorie
+{% endblock %}
+{% block admin_content %}
 	{{ include('category/_form.html.twig') }}
 	<div class="row d-flex">
-		<div class="col d-flex align-items-center justify-content-end me-4">
-			<a class="text-dark fw-bold px-4 fs-3" href="{{ path('app_category_index') }}">Retour</a>
+		<div class="col d-flex align-items-center justify-content-between me-4">
+			<a class="text-light text-nowrap m-2 px-3" href="{{ path('app_category_index') }}">Retour</a>
 		</div>
 	</div>
 {% endblock %}

@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_layout.html.twig' %}
 
-{% block title %}New Episode{% endblock %}
-
-{% block body %}
-    <h1>Create new Episode</h1>
-
-    {{ include('episode/_form.html.twig') }}
-
-    <a href="{{ path('app_episode_index') }}">back to list</a>
+{% block title %}
+	{{ parent() }}
+	Création-Épisode
+{% endblock %}
+{% block admin_content_title %}Création d'un épisode
+{% endblock %}
+{% block admin_content %}
+	{{ include('episode/_form.html.twig') }}
+	<div class="row d-flex">
+		<div class="col d-flex align-items-center justify-content-between me-4">
+			<a class="text-light text-nowrap m-2 px-3" href="{{ path('app_episode_index') }}">Retour</a>
+		</div>
+	</div>
 {% endblock %}
