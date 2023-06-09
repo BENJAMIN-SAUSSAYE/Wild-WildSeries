@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Actor;
 use App\Form\ActorType;
 use App\Repository\ActorRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class ActorController extends AbstractController
         return $this->render('actor/index.html.twig', ['actors' => $actors]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'new')]
     public function new(Request $request, MailerInterface $mailer, ActorRepository $actorRepository): Response
     {
@@ -76,6 +77,7 @@ class ActorController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{actor}/edit', requirements: ['actor' => '\d+'],  name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Actor $actor, ActorRepository $actorRepository): Response
     {
@@ -100,7 +102,7 @@ class ActorController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{actor}', requirements: ['actor' => '\d+'], name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Actor $actor, ActorRepository $actorRepository): Response
     {
