@@ -25,13 +25,16 @@
 						<div class="card">
 							<img class="card-img-top object-fit-cover" src="{{ program.poster is not empty ? vich_uploader_asset(program) : asset('build/images/placeholder_serie.svg') }}" alt="{{ 'poster ' ~ program.title }}">
 							<div class="card-header text-white bg-dark py-4 d-flex align-items-center justify-content-between">
-								Série
 								<div>
-									<a class="px-3 py-2 text-decoration-none" href="{{ path("app_category_show", { 'categoryName': program.category.name }) }}">{{ program.category.name }}</a>
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewbox="0 0 16 16">
-										<path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
-										<path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
-									</svg>
+									<a class="px-3 py-2 text-decoration-none" href="{{ path("app_category_show", { 'categoryName': program.category.name }) }}">
+										<span class="badge text-bg-light">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewbox="0 0 16 16">
+												<path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
+												<path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
+											</svg>
+											{{ program.category.name }}
+										</span>
+									</a>
 								</div>
 							</div>
 							<div class="card-body text-white bg-primary-light">
@@ -42,8 +45,22 @@
 								</p>
 							</div>
 							<div class="card-footer bg-primary">
-								<div class="d-flex align-items-center justify-content-end">
-									<a class="bottom text-white" href="{{ path("app_program_show", { 'slug': program.slug }) }}">Voir la fiche</a>
+								<div class="d-flex align-items-center justify-content-between">
+									<a role="button" class="btn btn-sm btn-outline-secondary text-white" href="{{ path("app_program_show", { 'slug': program.slug }) }}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewbox="0 0 16 16">
+											<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+											<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+										</svg>
+										Voir la fiche...
+									</a>
+									{% if is_granted("ROLE_ADMIN") or (is_granted("ROLE_CONTRIBUTOR") and app.user == program.owner) %}
+										<a role="button" class="btn btn-warning btn-sm btn-outline-secondary text-white" href="{{ path('app_program_edit', { 'slug': program.slug} ) }}">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewbox="0 0 16 16">
+												<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+											</svg>
+											Éditer
+										</a>
+									{% endif %}
 								</div>
 							</div>
 						</div>

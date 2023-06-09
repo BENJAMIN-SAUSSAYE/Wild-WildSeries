@@ -1,4 +1,14 @@
+# Définissons le niveau de hiérarchie suivant pour le Wild Series:
+#     un simple utilisateur peut lire le résumé d’une série.
+#     seuls les administrateurs peuvent créer une catégorie.
+#     seuls les utilisateurs avec le role "contributeur" peuvent ajouter/modifier des séries.
+#     un contributeur ne peut modifier une série que s'il en est l'auteur.
+#     un administrateur peut modifier toutes les séries sans exception.
+
 security:
+    role_hierarchy:
+        ROLE_CONTRIBUTOR: ROLE_USER
+        ROLE_ADMIN: ROLE_CONTRIBUTOR
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
@@ -42,9 +52,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-
+        - { path: ^/program/new, roles: ROLE_CONTRIBUTOR }
+        - { path: ^/program/[a-zA-Z_0-9-]+/edit, roles: ROLE_CONTRIBUTOR }
+        - { path: ^/category/[a-zA-Z_0-9-]+/edit, roles: ROLE_ADMIN }
+        - { path: ^/category/new, roles: ROLE_ADMIN }
+        
 when@test:
     security:
         password_hashers:

@@ -30,6 +30,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 0; $i < self::PROGRAM_COUNT; $i++) {
             $program = new Program();
+            $user = $this->getReference('user_' . $faker->numberBetween(1, UserFixtures::USER_COUNT));
+            $program->setOwner($user);
             $program->setTitle($faker->sentence(3, true));
             $program->setSynopsis($faker->paragraphs(3, true));
             $program->setCategory($this->getReference('category_' .  $faker->numberBetween(0, count(CategoryFixtures::CATEGORIES) - 1)));
@@ -47,6 +49,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     {
         // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
         return [
+            UserFixtures::class,
             CategoryFixtures::class,
         ];
     }

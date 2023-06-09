@@ -22,8 +22,8 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
                 for ($e = 0; $e < EpisodeFixtures::EPISODE_COUNT; $e++) {
                     $episode = $this->getReference('episode_' .  strval($i) . strval($s) . strval($e));
                     for ($u = 1; $u < self::COMMENT_COUNT; $u++) {
-                        $user = $this->getReference('user_' . $faker->numberBetween(1, 2));
                         $comment = new Comment();
+                        $user = $this->getReference('user_' . $faker->numberBetween(1, UserFixtures::USER_COUNT));
                         $comment->setAuthor($user);
                         $comment->setEpisode($episode);
                         $comment->setComment($faker->paragraph(4));
