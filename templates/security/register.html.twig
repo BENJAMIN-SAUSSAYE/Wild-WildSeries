@@ -1,0 +1,37 @@
+{% extends 'visitor_layout.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| Register
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row m-4 p-4">
+			<div class="col-6 m-auto">
+
+				<div class="card border-secondary border-3">
+					<div class="card-header bg-secondary text-center p-4">
+						<svg class="icon-person-circle" xmlns="http://www.w3.org/2000/svg" width="106" height="106" fill="currentColor" class="bi bi-person-circle" viewbox="0 0 16 16">
+							<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+							<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+						</svg>
+					</div>
+					<div class="card-body m-2">
+						<h1 class="card-title mb-2 text-center">Créer un compte</h1>
+						{{ form_start(registrationForm) }}
+						{{ form_row(registrationForm.email) }}
+						{# {{ form_row(registrationForm.plainPassword, {            label: 'Mot de passe'        }) }} #}
+						{{ form_row(registrationForm.password.first) }}
+						{{ form_row(registrationForm.password.second) }}
+						{{ form_row(registrationForm.agreeTerms) }}
+						<div class="d-flex justify-content-end">
+							<button type="submit" class="btn btn-primary">S'enregistrer</button>
+						</div>
+						{{ form_end(registrationForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

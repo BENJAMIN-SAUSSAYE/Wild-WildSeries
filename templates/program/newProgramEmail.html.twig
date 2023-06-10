@@ -4,8 +4,10 @@
 	| Nouvelle Série
 {% endblock %}
 {% block body %}
-	<h1><img src="{{ absolute_url(asset('build/images/logo.png')) }}" alt="Logo">
-		WILD SÉRIES</h1>
+	<h1>
+		<img src="{{ absolute_url(asset('build/images/logo.png')) }}" alt="Logo">
+		WILD SÉRIES
+	</h1>
 	<h2>Nouvelle Série
 		<span class="ft-red">{{ program.title }}</span>
 	</h2>
@@ -19,6 +21,5 @@
 		{{program.synopsis }}
 	</p>
 	<br>
-	<a href="{{ absolute_url(path("app_program_show", { 'slug': program.slug })) }}" target="_blanc">Voir la fiche de la série :{{ program.title }}
-	</a>
+	<a href="{{ absolute_url(path("app_program_show", { 'slug': program.slug })) }}" target="_blanc">Voir la fiche de la série :{{ program.title }}</a>
 {% endblock %}
