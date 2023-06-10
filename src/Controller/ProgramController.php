@@ -7,7 +7,9 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
+use App\Repository\UserRepository;
 use App\Service\ProgramDuration;
+use App\Service\UserAdressService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,7 +33,7 @@ class ProgramController extends AbstractController
 
     #[IsGranted('ROLE_CONTRIBUTOR')]
     #[Route('/new', name: 'new')]
-    public function new(Request $request, MailerInterface $mailer, ProgramRepository $programRepository, SluggerInterface $slugger): Response
+    public function new(Request $request, MailerInterface $mailer, ProgramRepository $programRepository, SluggerInterface $slugger, UserAdressService $userAdressService): Response
     {
         // Create a new Category Object
         $program = new Program();
@@ -55,9 +57,12 @@ class ProgramController extends AbstractController
                 'La série a été ajoutée'
             );
 
+            //get list of adress of User with role Contributor
+            $recipients = $userAdressService->getUserAdressFromSpecificRole('ROLE_CONTRIBUTOR');
+
             $email = (new Email())
                 ->from($this->getParameter('mailer_from'))
-                ->to(new Address('destinataure@wild.com'))
+                ->to(...$recipients)
                 ->subject('Une nouvelle série vient d\'être publiée !')
                 ->html($this->renderView(
                     'program/newProgramEmail.html.twig',
