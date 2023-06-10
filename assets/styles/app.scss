@@ -15,6 +15,7 @@ h6 {
 
 body {
   height: 100vh;
+  padding-block-start: $navbar-height;
 }
 
 .navbar-toggler:focus {

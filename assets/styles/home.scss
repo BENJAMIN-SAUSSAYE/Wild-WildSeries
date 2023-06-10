@@ -2,12 +2,13 @@
   background-image: url("../images/home.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position-y: 45px;
+  background-position-x: center;
   opacity: 90%;
   justify-content: center;
   align-items: end;
   display: flex;
-  height: 88%;
+  height: 100%;
   width: 100%;
 }
 
