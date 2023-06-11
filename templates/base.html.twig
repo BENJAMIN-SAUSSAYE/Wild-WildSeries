@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" {{ stimulus_controller('mytheme') }} {{ stimulus_target('mytheme', 'theming') }}>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/png" href="{{ asset('build/images/favicon.svg') }}"/>
+		<link rel="icon" href="{{ asset('build/images/favicon.ico') }}"/>
 		<title>
 			{% block title %}Wild-Séries
 			{% endblock %}
@@ -16,8 +16,10 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body>
-		{% block navbar %}{% endblock %}
+	<body {{ stimulus_controller('symfony/ux-swup/swup') }}>
+		{% block navbar %}
+			{# 	 #}
+		{% endblock %}
 		{% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }}">
@@ -25,9 +27,13 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
-		{% block body %}{% endblock %}
+		<span id="swup">
+			{% block body %}
+				{# 	 #}
+			{% endblock %}
+		</span>
 		{% block footer %}
 			{# {% include 'components/_footer.html.twig' %} #}
 		{% endblock %}
 	</body>
-</html>
+</html></body></html>
