@@ -11,7 +11,7 @@
 	<div class="masthead bg-dark text-white text-center">
 		<div class="container-fluid d-flex align-items-center flex-column p-0 m-0">
 			<div class="masthead-heading">
-				<h1 class="display-1 text-uppercase mb-0 fw-bold">WILD SÉRIES</h1>
+				<h1 class="display-1 text-light mb-0 fw-bold" {{ stimulus_controller('symfony/ux-typed', { strings: [ 'Bienvenue', 'sur le site', 'WILD SÉRIES' ], loop: false, showCursor: true, cursorChar: '✨', } ) }}></h1>
 				<div class="divider-custom divider-light">
 					<div class="divider-custom-line"></div>
 					<div class="divider-custom-icon bg-transparent">
@@ -21,7 +21,7 @@
 					</div>
 					<div class="divider-custom-line"></div>
 				</div>
-				<p class="masthead-subheading font-weight-light mb-0">100 000 séries</p>
+				<p class="masthead-subheading font-weight-light mb-0" {{ stimulus_controller('symfony/ux-typed', { strings: [ 'Le meilleur site pour suivre tes séries préférées', 'Découvre les dernières actus sur les séries du moment'], loop: true, showCursor: false, cursorChar: '✨', } ) }}></p>
 			</div>
 		</div>
 	</div>
