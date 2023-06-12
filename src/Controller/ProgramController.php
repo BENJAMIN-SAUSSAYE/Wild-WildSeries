@@ -6,6 +6,7 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\ProgramType;
+use App\Form\SearchProgramType;
 use App\Repository\ProgramRepository;
 use App\Repository\UserRepository;
 use App\Service\ProgramDuration;
@@ -25,10 +26,23 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 #[Route('/program', name: 'app_program_')]
 class ProgramController extends AbstractController
 {
-    #[Route('/', methods: ['GET'], name: 'index')]
-    public function index(ProgramRepository $programRepository): Response
+    #[Route('/', methods: ['GET', 'POST'], name: 'index')]
+    public function index(Request $request, ProgramRepository $programRepository): Response
     {
-        return $this->render('program/index.html.twig', ['programs' => $programRepository->findAll()]);
+        // Create the search form
+        $form = $this->createForm(SearchProgramType::class);
+
+        // Get data from HTTP request
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $programs = $programRepository->findLikeName($search);
+        } else {
+            $programs = $programRepository->findAll();
+        }
+
+        return $this->render('program/index.html.twig', ['programs' => $programs, 'formSearchProgram' => $form,]);
     }
 
     #[IsGranted('ROLE_CONTRIBUTOR')]
