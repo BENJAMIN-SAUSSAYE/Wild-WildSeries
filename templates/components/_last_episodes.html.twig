@@ -8,11 +8,12 @@
 					<div class="col-3 text-white border border-1 rounded">
 						<div class="py-4 d-flex flex-column justify-content-arround">
 							<h1 class="fs-5 px-2 mx-2 my-2">{{ 'Épisode n° ' ~ episode.number }}</h1>
-							<a class="fs-6 px-2 py-2 m-2 text-decoration-none" href="{{ path('app_program_episode_show', { 'program': episode.season.program.slug, 'season': episode.season.id, 'episode': episode.slug}) }}">{{ episode.title }}</a>
+							<a class="fs-5 px-2 py-2 m-2 text-decoration-none" href="{{ path('app_program_episode_show', { 'program': episode.season.program.slug, 'season': episode.season.id, 'episode': episode.slug}) }}">{{ episode.title }}</a>
 							<p class="fs-6 px-2 mx-2 my-2 text-secondary">
 								{{ 'Saison : ' ~ episode.season.number }}
-								/
-								{{ 'Série : ' ~ episode.season.program.title }}
+							</p>
+							<p class="fs-6 px-2 mx-2 my-2 text-secondary ">
+								{{ episode.season.program.title }}
 							</p>
 						</div>
 					</div>

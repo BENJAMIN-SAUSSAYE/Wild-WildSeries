@@ -14,6 +14,6 @@ final class LastEpisodesComponent
 
 	public function getLastThreeEpisodes(): array
 	{
-		return $this->episodeRepository->findBy([], ['id' => 'ASC'], 3, null);
+		return $this->episodeRepository->findBy([], ['id' => 'DESC'], 3, null);
 	}
 }
