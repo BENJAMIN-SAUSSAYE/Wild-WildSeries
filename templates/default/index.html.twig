@@ -8,21 +8,23 @@
 	{{ encore_entry_link_tags('home') }}
 {% endblock %}
 {% block body %}
-	<div class="masthead bg-dark text-white text-center">
-		<div class="container-fluid d-flex align-items-center flex-column p-0 m-0">
-			<div class="masthead-heading">
-				<h1 class="display-1 text-light mb-0 fw-bold" {{ stimulus_controller('symfony/ux-typed', { strings: [ 'Bienvenue', 'sur le site', 'WILD SÉRIES' ], loop: false, showCursor: true, cursorChar: '✨', } ) }}></h1>
-				<div class="divider-custom divider-light">
-					<div class="divider-custom-line"></div>
-					<div class="divider-custom-icon bg-transparent">
-						<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-star text-white" viewbox="0 0 16 16">
-							<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-						</svg>
+	<main class="h-100">
+		<div class="masthead bg-dark text-white text-center">
+			<div class="container-fluid d-flex align-items-center flex-column p-0 m-0">
+				<div class="masthead-heading">
+					<h1 class="display-1 text-light mb-0 fw-bold" {{ stimulus_controller('symfony/ux-typed', { strings: [ 'Bienvenue', 'sur le site', 'WILD SÉRIES' ], loop: false, showCursor: true, cursorChar: '✨', } ) }}></h1>
+					<div class="divider-custom divider-light">
+						<div class="divider-custom-line"></div>
+						<div class="divider-custom-icon bg-transparent">
+							<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-star text-white" viewbox="0 0 16 16">
+								<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+							</svg>
+						</div>
+						<div class="divider-custom-line"></div>
 					</div>
-					<div class="divider-custom-line"></div>
+					<p class="masthead-subheading font-weight-light mb-0" {{ stimulus_controller('symfony/ux-typed', { strings: [ 'Le meilleur site pour suivre tes séries préférées', 'Découvre les dernières actus sur les séries du moment'], loop: true, showCursor: false, cursorChar: '✨', } ) }}></p>
 				</div>
-				<p class="masthead-subheading font-weight-light mb-0" {{ stimulus_controller('symfony/ux-typed', { strings: [ 'Le meilleur site pour suivre tes séries préférées', 'Découvre les dernières actus sur les séries du moment'], loop: true, showCursor: false, cursorChar: '✨', } ) }}></p>
 			</div>
 		</div>
-	</div>
+	</main>
 {% endblock %}

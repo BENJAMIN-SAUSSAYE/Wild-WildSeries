@@ -32,8 +32,11 @@
 				{# 	 #}
 			{% endblock %}
 		</span>
+
 		{% block footer %}
-			{# {% include 'components/_footer.html.twig' %} #}
+
+			{{ component('_last_episodes') }}
+			{% include 'components/_footer.html.twig' %}
 		{% endblock %}
 	</body>
-</html></body></html>
+</html>

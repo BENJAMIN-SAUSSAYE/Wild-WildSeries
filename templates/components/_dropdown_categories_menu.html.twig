@@ -1,0 +1,19 @@
+<!-- component html -->
+<div class="dropdown px-2" {{attributes}}>
+	<button class="nav-link bg-primary border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+		Catégories
+	</button>
+	<ul class="dropdown-menu bg-primary">
+		<li>
+			<a class="dropdown-item text-light" href="{{ path("app_category_index") }}">All</a>
+		</li>
+		<li>
+			<hr class="dropdown-divider text-light">
+		</li>
+		{% for category in this.categories %}
+			<li>
+				<a class="dropdown-item text-light" href="{{ path("app_category_show", { categoryName: category.name }) }}">{{ category.name }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

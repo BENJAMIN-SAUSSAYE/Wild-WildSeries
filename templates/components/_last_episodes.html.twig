@@ -1,0 +1,23 @@
+<div{{attributes}}
+	class="container-fluid asside-container py-2">
+	<!-- component html -->
+	<aside>
+		<div class="row mt-2 px-sm-5">
+			<div class="d-flex flex-row justify-content-center align-items-center gap-4">
+				{% for episode in this.LastThreeEpisodes %}
+					<div class="col-3 text-white border border-1 rounded">
+						<div class="py-4 d-flex flex-column justify-content-arround">
+							<h1 class="fs-5 px-2 mx-2 my-2">{{ 'Épisode n° ' ~ episode.number }}</h1>
+							<a class="fs-6 px-2 py-2 m-2 text-decoration-none" href="{{ path('app_program_episode_show', { 'program': episode.season.program.slug, 'season': episode.season.id, 'episode': episode.slug}) }}">{{ episode.title }}</a>
+							<p class="fs-6 px-2 mx-2 my-2 text-secondary">
+								{{ 'Saison : ' ~ episode.season.number }}
+								/
+								{{ 'Série : ' ~ episode.season.program.title }}
+							</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</aside>
+</div>
