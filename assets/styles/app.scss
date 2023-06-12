@@ -15,7 +15,17 @@ h6 {
 
 body {
   height: 100vh;
-  padding-block-start: $navbar-height;
+  padding-block-start: calc($navbar-height + 0.5rem);
+}
+
+footer {
+  width: 100%;
+  height: $footer-height;
+}
+
+.asside-container {
+  bottom: calc($footer-height + 1rem);
+  width: 100%;
 }
 
 .navbar-toggler:focus {
