@@ -17,6 +17,7 @@
 						Ajouter
 					</a>
 				</div>
+				{{ include('components/_searchProgram.html.twig') }}
 			</div>
 
 			<div class="card-group">
@@ -65,15 +66,12 @@
 							</div>
 						</div>
 					</div>
-				{% else %}
-					Aucune série trouvée.
+					{% else %}Aucune série trouvée.
 				{% endfor %}
 			</div>
 			<div class="row ">
 				<div class="col p-2 m-2 d-flex align-items-center justify-content-end px-4">
-					<a class="text-dark fw-bold fs-5" href="{{ path('app_index') }}">
-						Retour
-					</a>
+					<a class="text-dark fw-bold fs-5" href="{{ path('app_index') }}">Retour</a>
 				</div>
 			</div>
 		</div>

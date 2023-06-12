@@ -24,6 +24,7 @@
 						{% endif %}
 
 						<form action="{{ path('app_security_login') }}" method="post">
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 							<div class="form-outline mb-4">
 								<label for="username" class="form-label">Email</label>
 								<input type="text" id="username" name="_username" class="form-control border-secondary" value="{{ last_username }}">
