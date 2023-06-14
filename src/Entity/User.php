@@ -45,11 +45,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\ManyToMany(targetEntity: program::class, inversedBy: 'viewers')]
+    #[ORM\JoinTable(name: 'watchlist')]
+    private Collection $watchlist;
+
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
         $this->comment = new ArrayCollection();
         $this->programs = new ArrayCollection();
+        $this->watchlist = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,5 +204,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // The bcrypt and argon2i algorithms don't require a separate salt.
         // You *may* need a real salt if you choose a different encoder.
         return null;
+    }
+
+    /**
+     * @return Collection<int, program>
+     */
+    public function getWatchlist(): Collection
+    {
+        return $this->watchlist;
+    }
+
+    public function addToWatchlist(program $program): self
+    {
+        if (!$this->watchlist->contains($program)) {
+            $this->watchlist->add($program);
+            $program->addViewer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFromWatchlist(program $program): self
+    {
+        $this->watchlist->removeElement($program);
+        if ($this->watchlist->removeElement($program)) {
+            $program->removeViewer($this);
+        }
+        return $this;
+    }
+
+    public function isInWatchlist(Program $program): bool
+    {
+        return $this->watchlist->contains($program);
     }
 }

@@ -3,7 +3,7 @@
         "@babel/core": "^7.17.0",
         "@babel/preset-env": "^7.16.0",
         "@hotwired/stimulus": "^3.0.0",
-        "@popperjs/core": "^2.11.7",
+        "@popperjs/core": "^2.11.8",
         "@swup/debug-plugin": "^1.0||^2.0||^3.0",
         "@swup/fade-theme": "^1.0",
         "@swup/forms-plugin": "^1.0||^2.0",
@@ -13,7 +13,7 @@
         "@symfony/ux-swup": "file:vendor/symfony/ux-swup/assets",
         "@symfony/ux-typed": "file:vendor/symfony/ux-typed/assets",
         "@symfony/webpack-encore": "^4.0.0",
-        "bootstrap": "^5.2.3",
+        "bootstrap": "5.3.0",
         "core-js": "^3.23.0",
         "file-loader": "^6.0.0",
         "jquery": "^3.7.0",
@@ -34,5 +34,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "bootstrap-icons": "^1.10.5"
     }
 }

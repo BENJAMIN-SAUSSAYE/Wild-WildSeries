@@ -2,30 +2,37 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\Season;
 use App\Entity\Episode;
 use App\Entity\Program;
-use App\Entity\Season;
 use App\Form\ProgramType;
 use App\Form\SearchProgramType;
-use App\Repository\ProgramRepository;
-use App\Repository\UserRepository;
 use App\Service\ProgramDuration;
-use App\Service\UserAdressService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
+use App\Repository\UserRepository;
+use App\Service\UserAdressService;
+use Symfony\Component\Mime\Address;
+use App\Repository\ProgramRepository;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 #[Route('/program', name: 'app_program_')]
 class ProgramController extends AbstractController
 {
+    public function __construct(private EntityManagerInterface $entityManager)
+    {
+    }
+
     #[Route('/', methods: ['GET', 'POST'], name: 'index')]
     public function index(Request $request, ProgramRepository $programRepository): Response
     {
@@ -170,5 +177,29 @@ class ProgramController extends AbstractController
         }
 
         return $this->redirectToRoute('app_program_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/watchlist', requirements: ['id' => '\d+'], name: 'add_to_watchlist', methods: ["GET", "POST"])]
+    public function addToWatchlist(Program $program, UserRepository $userRepository): Response
+    {
+        if (!$program) {
+            throw $this->createNotFoundException(
+                'aucun programme avec cet identifiant n\'a été trouvé dans la table des programmes'
+            );
+        }
+
+        /** @var \App\Entity\User */
+        $user = $this->getUser();
+
+        if ($user->isInWatchlist($program)) {
+            $user->removeFromWatchlist($program);
+        } else {
+            $user->addToWatchlist($program);
+        }
+
+        $userRepository->save($user, true);
+
+        //Redirect to programs list
+        return $this->redirectToRoute('app_program_show', ['slug' => $program->getSlug()], Response::HTTP_SEE_OTHER);
     }
 }
