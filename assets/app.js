@@ -4,13 +4,22 @@
  * We recommend including the built version of this JavaScript file
  * (and its CSS file) in your base layout (base.html.twig).
  */
+
 const $ = require("jquery");
 const bootstrap = require("bootstrap");
+
 // any CSS you import will output into a single css file (app.css in this case)
-require("./styles/app.scss");
+import "./styles/app.scss";
+
+//import bootstrap icon
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 // start the Stimulus application
-require("./bootstrap");
+import "./bootstrap";
+
+// or you can include specific pieces
+// require('bootstrap/js/dist/tooltip');
+// require('bootstrap/js/dist/popover');
 
 var popoverTriggerList = [].slice.call(
   document.querySelectorAll('[data-bs-toggle="popover"]')

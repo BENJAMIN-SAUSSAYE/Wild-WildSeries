@@ -50,6 +50,7 @@
         "symfony/yaml": "6.2.*",
         "symfonycasts/reset-password-bundle": "*",
         "symfonycasts/verify-email-bundle": "^1.13",
+        "twbs/bootstrap": "5.3.0",
         "twig/cssinliner-extra": "^3.6",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
