@@ -28,3 +28,31 @@ var popoverTriggerList = [].slice.call(
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl);
 });
+
+document.getElementById("watchlist").addEventListener("click", addToWatchlist);
+
+function addToWatchlist(event) {
+  event.preventDefault();
+  const watchlistLink = event.currentTarget;
+  const link = watchlistLink.href;
+  // Send an HTTP request with fetch to the URI defined in the href
+  try {
+    fetch(link)
+      // Extract the JSON from the response
+      .then((response) => response.json())
+      // Then update the icon
+      .then((data) => {
+        const watchlistIcon = watchlistLink.firstElementChild;
+
+        if (data.isInWatchlist) {
+          watchlistIcon.classList.remove("bi-heart", "text-light"); // Remove the .bi-heart (empty heart) from classes in <i> element
+          watchlistIcon.classList.add("bi-heart-fill", "text-danger"); // Add the .bi-heart-fill (full heart) from classes in <i> element
+        } else {
+          watchlistIcon.classList.remove("bi-heart-fill", "text-danger"); // Remove the .bi-heart-fill (full heart) from classes in <i> element
+          watchlistIcon.classList.add("bi-heart", "text-light"); // Add the .bi-heart (empty heart) from classes in <i> element
+        }
+      });
+  } catch (err) {
+    console.error(err);
+  }
+}
